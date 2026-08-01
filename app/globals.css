@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* TODO (Fase 2.1): portar variables de diseño (--rosewood, --brass, --ivory, etc.),
+   utilidades (.wrap, .eyebrow, .btn*, .reveal) y breakpoints desde
+   docs/reference/index.html */
