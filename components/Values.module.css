@@ -2,13 +2,13 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
-  background: rgba(195, 166, 113, .3);
-  border: 1px solid rgba(195, 166, 113, .3);
+  background: rgba(203, 169, 106, .3);
+  border: 1px solid rgba(203, 169, 106, .3);
   text-align: left;
 }
 
 .value {
-  background: var(--rosewood);
+  background: var(--navy);
   padding: 44px 36px;
   color: var(--ivory);
 }
@@ -22,7 +22,7 @@
 .value p {
   font-size: 14.5px;
   font-weight: 300;
-  color: rgba(245, 242, 235, .75);
+  color: rgba(241, 239, 233, .75);
 }
 
 .indexNum {
@@ -30,7 +30,7 @@
   font-family: var(--serif);
   font-size: 15px;
   letter-spacing: .1em;
-  color: var(--brass-soft);
+  color: var(--gold-soft);
 }
 
 @media (max-width: 960px) {

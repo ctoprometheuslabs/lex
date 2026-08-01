@@ -4,14 +4,14 @@
   left: 0;
   right: 0;
   z-index: 90;
-  background: rgba(44, 23, 29, .55);
+  background: rgba(13, 27, 54, .55);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(195, 166, 113, .25);
+  border-bottom: 1px solid rgba(203, 169, 106, .25);
   transition: background .35s;
 }
 
 .topbar.solid {
-  background: rgba(44, 23, 29, .97);
+  background: rgba(13, 27, 54, .97);
 }
 
 .topbarInner {
@@ -35,14 +35,14 @@
 .monogram {
   width: 44px;
   height: 44px;
-  border: 1px solid var(--brass-soft);
+  border: 1px solid var(--gold-soft);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--serif);
   font-size: 15px;
-  color: var(--brass-soft);
+  color: var(--gold-soft);
   position: relative;
   letter-spacing: .05em;
 }
@@ -51,7 +51,7 @@
   content: '';
   position: absolute;
   inset: 3px;
-  border: 1px solid rgba(195, 166, 113, .4);
+  border: 1px solid rgba(203, 169, 106, .4);
   border-radius: 50%;
 }
 
@@ -67,7 +67,7 @@
   font-size: 9px;
   letter-spacing: .34em;
   text-transform: uppercase;
-  color: rgba(245, 242, 235, .55);
+  color: rgba(241, 239, 233, .55);
   margin-top: 2px;
   font-weight: 500;
 }
@@ -82,7 +82,7 @@
   font-size: 12.5px;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: rgba(245, 242, 235, .85);
+  color: rgba(241, 239, 233, .85);
   text-decoration: none;
   font-weight: 500;
   padding-bottom: 4px;
@@ -92,12 +92,12 @@
 
 .main a:hover {
   color: #fff;
-  border-color: var(--brass-soft);
+  border-color: var(--gold-soft);
 }
 
 .main a.active {
-  color: var(--brass-soft);
-  border-color: var(--brass-soft);
+  color: var(--gold-soft);
+  border-color: var(--gold-soft);
 }
 
 .menuToggle {
@@ -123,12 +123,12 @@
     top: 80px;
     right: 0;
     left: 0;
-    background: var(--rosewood-deep);
+    background: var(--navy-deep);
     flex-direction: column;
     gap: 0;
     padding: 10px 0 24px;
     display: none;
-    border-bottom: 1px solid rgba(195, 166, 113, .25);
+    border-bottom: 1px solid rgba(203, 169, 106, .25);
   }
 
   .main.open {

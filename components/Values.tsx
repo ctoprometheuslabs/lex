@@ -12,7 +12,7 @@ type ValuesProps = {
 
 /**
  * Grid de "principios" de la firma (`.values`/`.value` en el borrador,
- * sección tinted de `/firma`). Tarjetas rosewood con numeral romano.
+ * sección tinted de `/firma`). Tarjetas navy con numeral romano.
  */
 export default function Values({ values }: ValuesProps) {
   return (

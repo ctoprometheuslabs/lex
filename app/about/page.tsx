@@ -134,7 +134,7 @@ export default function AboutPage() {
         <Reveal>
           <h2>¿Quiere saber si puedo ayudarle?</h2>
           <p>La primera conversación es confidencial y sin compromiso.</p>
-          <Link href="/contact" className="btn btn-brass">
+          <Link href="/contact" className="btn btn-gold">
             Agendar consulta
           </Link>
         </Reveal>

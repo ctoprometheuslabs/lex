@@ -45,7 +45,7 @@ export default function Home() {
         }
         lead="Atiendo personalmente a empresas y personas en asuntos donde la estrategia jurídica define el resultado. Excelencia técnica, trato directo y confidencialidad absoluta."
         ctas={[
-          { label: "Agendar una consulta", href: "/contact", variant: "brass" },
+          { label: "Agendar una consulta", href: "/contact", variant: "gold" },
           { label: "Áreas de práctica", href: "/practice-areas", variant: "light" },
         ]}
         portrait={{ src: photo, alt: "Grant, retrato profesional" }}

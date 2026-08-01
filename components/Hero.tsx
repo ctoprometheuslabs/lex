@@ -8,7 +8,7 @@ import styles from "./Hero.module.css";
 type HeroCta = {
   label: string;
   href: string;
-  variant: "brass" | "light";
+  variant: "gold" | "light";
 };
 
 type HeroPortrait = {

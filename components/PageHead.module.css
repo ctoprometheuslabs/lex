@@ -4,7 +4,7 @@
   color: var(--ivory);
   text-align: center;
   overflow: hidden;
-  background: var(--rosewood-deep);
+  background: var(--navy-deep);
 }
 
 .pbg {
@@ -18,7 +18,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(44, 23, 29, .4), rgba(44, 23, 29, .85));
+  background: linear-gradient(180deg, rgba(13, 27, 54, .4), rgba(13, 27, 54, .85));
 }
 
 .pageHead :global(.wrap) {
@@ -36,6 +36,6 @@
   font-size: 11px;
   letter-spacing: .34em;
   text-transform: uppercase;
-  color: var(--brass-soft);
+  color: var(--gold-soft);
   font-weight: 500;
 }

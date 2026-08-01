@@ -1,13 +1,13 @@
 :root {
-  --rosewood: #3F2229;
-  --rosewood-deep: #2C171D;
-  --ink: #211C1A;
-  --ivory: #F5F2EB;
-  --paper: #FBFAF6;
-  --brass: #A9854B;
-  --brass-soft: #C3A671;
-  --stone: #7C746C;
-  --line: rgba(63, 34, 41, .18);
+  --navy: #16294B;
+  --navy-deep: #0D1B36;
+  --ink: #1A1F2B;
+  --ivory: #F1EFE9;
+  --paper: #FAF9F5;
+  --gold: #B9924F;
+  --gold-soft: #CBA96A;
+  --stone: #6E7482;
+  --line: rgba(22, 41, 75, .16);
 }
 
 * {
@@ -32,7 +32,7 @@ body {
 }
 
 ::selection {
-  background: var(--rosewood);
+  background: var(--navy);
   color: var(--ivory);
 }
 
@@ -57,7 +57,7 @@ img {
   font-size: 11px;
   letter-spacing: .32em;
   text-transform: uppercase;
-  color: var(--brass);
+  color: var(--gold);
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -68,7 +68,7 @@ img {
   content: '';
   width: 36px;
   height: 1px;
-  background: var(--brass);
+  background: var(--gold);
 }
 
 .center .eyebrow {
@@ -79,7 +79,7 @@ img {
   content: '';
   width: 36px;
   height: 1px;
-  background: var(--brass);
+  background: var(--gold);
 }
 
 h1,
@@ -122,41 +122,41 @@ h3 {
   padding: 16px 34px;
   text-decoration: none;
   cursor: pointer;
-  border: 1px solid var(--rosewood);
+  border: 1px solid var(--navy);
   transition: background .3s, color .3s, border-color .3s;
   background: none;
   font-family: var(--sans);
 }
 
 .btn-solid {
-  background: var(--rosewood);
+  background: var(--navy);
   color: var(--ivory);
 }
 
 .btn-solid:hover {
-  background: var(--rosewood-deep);
+  background: var(--navy-deep);
 }
 
-.btn-brass {
-  border-color: var(--brass);
-  background: var(--brass);
-  color: var(--rosewood-deep);
+.btn-gold {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: var(--navy-deep);
 }
 
-.btn-brass:hover {
-  background: var(--brass-soft);
-  border-color: var(--brass-soft);
+.btn-gold:hover {
+  background: var(--gold-soft);
+  border-color: var(--gold-soft);
 }
 
 .btn-light {
-  border-color: var(--brass-soft);
+  border-color: var(--gold-soft);
   color: var(--ivory);
 }
 
 .btn-light:hover {
-  background: var(--brass);
-  border-color: var(--brass);
-  color: var(--rosewood-deep);
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--navy-deep);
 }
 
 /* ---------- Secciones (usadas por las 5 páginas) ---------- */

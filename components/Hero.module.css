@@ -12,7 +12,7 @@
   position: absolute;
   inset: -12% 0;
   z-index: 0;
-  background: var(--rosewood-deep);
+  background: var(--navy-deep);
   will-change: transform;
 }
 
@@ -21,7 +21,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(180deg, rgba(44, 23, 29, .82) 0%, rgba(44, 23, 29, .68) 50%, rgba(44, 23, 29, .92) 100%);
+  background: linear-gradient(180deg, rgba(13, 27, 54, .82) 0%, rgba(13, 27, 54, .68) 50%, rgba(13, 27, 54, .92) 100%);
 }
 
 .heroInner {
@@ -50,7 +50,7 @@
   font-size: 11px;
   letter-spacing: .38em;
   text-transform: uppercase;
-  color: var(--brass-soft);
+  color: var(--gold-soft);
   font-weight: 500;
   margin-bottom: 26px;
 }
@@ -59,7 +59,7 @@
   content: '';
   width: 36px;
   height: 1px;
-  background: var(--brass-soft);
+  background: var(--gold-soft);
 }
 
 .heroText h1 {
@@ -70,14 +70,14 @@
 
 .heroText h1 em {
   font-style: italic;
-  color: var(--brass-soft);
+  color: var(--gold-soft);
 }
 
 .lead {
   max-width: 480px;
   margin: 0 0 40px;
   font-weight: 300;
-  color: rgba(245, 242, 235, .82);
+  color: rgba(241, 239, 233, .82);
 }
 
 .heroCtas {
@@ -96,17 +96,17 @@
   width: 100%;
   max-width: 400px;
   aspect-ratio: 4 / 5;
-  border: 1px solid rgba(195, 166, 113, .4);
-  outline: 1px solid rgba(195, 166, 113, .2);
+  border: 1px solid rgba(203, 169, 106, .4);
+  outline: 1px solid rgba(203, 169, 106, .2);
   outline-offset: 8px;
-  background: var(--rosewood-deep);
+  background: var(--navy-deep);
 }
 
 .portraitFrame::after {
   content: '';
   position: absolute;
   inset: 12px;
-  border: 1px solid rgba(195, 166, 113, .4);
+  border: 1px solid rgba(203, 169, 106, .4);
   pointer-events: none;
   z-index: 1;
 }

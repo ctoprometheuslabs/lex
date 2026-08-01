@@ -62,7 +62,7 @@ export default function Topbar() {
               {link.label}
             </Link>
           ))}
-          <Link href="/contact" className="btn btn-brass" style={{ padding: "12px 24px" }}>
+          <Link href="/contact" className="btn btn-gold" style={{ padding: "12px 24px" }}>
             Agendar consulta
           </Link>
         </nav>

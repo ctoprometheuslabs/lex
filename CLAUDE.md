@@ -44,9 +44,9 @@ Referencia visual canónica: el borrador `index.html` en la raíz. La migración
 
 ## Sistema de diseño (resumen — detalle completo en el agente frontend)
 
-- Colores SOLO vía variables: `--rosewood #3F2229`, `--rosewood-deep #2C171D`,
-  `--brass #A9854B`, `--brass-soft #C3A671`, `--ivory #F5F2EB`, `--paper #FBFAF6`,
-  `--ink #211C1A`, `--stone #7C746C`.
+- Colores SOLO vía variables: `--navy #16294B`, `--navy-deep #0D1B36`,
+  `--gold #B9924F`, `--gold-soft #CBA96A`, `--ivory #F1EFE9`, `--paper #FAF9F5`,
+  `--ink #1A1F2B`, `--stone #6E7482`.
 - Tipografía: Libre Caslon Text (títulos, peso 400) + Libre Franklin (cuerpo/UI).
 - Firma visual: marcos de doble filete, monograma circular, numerales romanos,
   `border-radius: 0` siempre, sombras casi nulas, parallax sutil con

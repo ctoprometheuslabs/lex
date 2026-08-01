@@ -16,11 +16,11 @@ export default function CtaBand({ eyebrow, title, description, button }: CtaBand
     <section className={styles.ctaBand}>
       <div className="wrap">
         {eyebrow ? (
-          <p className={`eyebrow center ${styles.eyebrowBrass}`}>{eyebrow}</p>
+          <p className={`eyebrow center ${styles.eyebrowGold}`}>{eyebrow}</p>
         ) : null}
         <h2>{title}</h2>
         <p>{description}</p>
-        <Link href={button.href} className="btn btn-brass">
+        <Link href={button.href} className="btn btn-gold">
           {button.label}
         </Link>
       </div>

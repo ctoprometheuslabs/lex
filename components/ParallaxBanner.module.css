@@ -22,7 +22,7 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: rgba(44, 23, 29, .8);
+  background: rgba(13, 27, 54, .8);
 }
 
 .pbInner {
@@ -39,12 +39,12 @@
 
 .pbInner :global(h2 em) {
   font-style: italic;
-  color: var(--brass-soft);
+  color: var(--gold-soft);
 }
 
 .pbInner :global(p) {
   font-weight: 300;
-  color: rgba(245, 242, 235, .8);
+  color: rgba(241, 239, 233, .8);
   max-width: 600px;
   margin: 0 auto 36px;
 }

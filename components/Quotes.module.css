@@ -16,7 +16,7 @@
   content: '\201C';
   font-family: var(--serif);
   font-size: 70px;
-  color: var(--brass);
+  color: var(--gold);
   position: absolute;
   top: 18px;
   left: 32px;
@@ -29,7 +29,7 @@
   font-size: 17.5px;
   line-height: 1.75;
   margin: 34px 0 24px;
-  color: #332d2a;
+  color: #2c3340;
 }
 
 .blockquote footer {
@@ -41,7 +41,7 @@
 }
 
 .blockquote footer b {
-  color: var(--rosewood);
+  color: var(--navy);
   display: block;
   font-size: 12px;
   margin-bottom: 2px;

@@ -42,7 +42,7 @@
 .field select:focus,
 .field textarea:focus {
   outline: none;
-  border-color: var(--rosewood);
+  border-color: var(--navy);
 }
 
 .formNote {
@@ -56,8 +56,8 @@
 }
 
 .formOk {
-  border: 1px solid var(--brass);
-  background: rgba(169, 133, 75, .08);
+  border: 1px solid var(--gold);
+  background: rgba(185, 146, 79, .08);
   padding: 18px 22px;
   font-size: 14px;
   display: none;

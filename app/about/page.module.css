@@ -16,7 +16,7 @@
   content: '';
   position: absolute;
   inset: 12px;
-  border: 1px solid rgba(195, 166, 113, .45);
+  border: 1px solid rgba(203, 169, 106, .45);
   pointer-events: none;
   z-index: 1;
 }
@@ -28,7 +28,7 @@
 .copy p {
   font-weight: 300;
   margin-bottom: 18px;
-  color: #3d3733;
+  color: #333a47;
 }
 
 .creds {
@@ -51,7 +51,7 @@
   font-size: 11px;
   letter-spacing: .2em;
   text-transform: uppercase;
-  color: var(--brass);
+  color: var(--gold);
   padding-top: 3px;
 }
 
