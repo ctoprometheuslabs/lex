@@ -21,11 +21,11 @@ const libreFranklin = Libre_Franklin({
 
 export const metadata: Metadata = {
   title: {
-    default: "Lex & Asociados",
-    template: "%s · Lex & Asociados",
+    default: "Grant Law — Abogado",
+    template: "%s · Grant Law",
   },
   description:
-    "Lex & Asociados. Estudio jurídico de excelencia: derecho corporativo, litigios, laboral, inmobiliario y familia.",
+    "Grant Law. Abogado. Asesoría legal en derecho corporativo, litigios, laboral, inmobiliario y familia.",
 };
 
 export default function RootLayout({

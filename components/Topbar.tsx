@@ -6,11 +6,11 @@ import { useEffect, useState } from "react";
 import styles from "./Topbar.module.css";
 
 const NAV_LINKS = [
-  { href: "/", label: "Inicio" },
-  { href: "/firma", label: "La firma" },
-  { href: "/areas", label: "Áreas de práctica" },
-  { href: "/equipo", label: "Equipo" },
-  { href: "/contacto", label: "Contacto" },
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/practice-areas", label: "Practice Areas" },
+  { href: "/experience", label: "Experience" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
 export default function Topbar() {
@@ -44,10 +44,10 @@ export default function Topbar() {
     <header className={topbarClassName}>
       <div className={styles.topbarInner}>
         <Link className={styles.brand} href="/">
-          <span className={styles.monogram}>L·A</span>
+          <span className={styles.monogram}>GL</span>
           <span className={styles.brandName}>
-            Lex &amp; Asociados
-            <small>Estudio Jurídico</small>
+            Grant Law
+            <small>Abogado</small>
           </span>
         </Link>
 
@@ -62,7 +62,7 @@ export default function Topbar() {
               {link.label}
             </Link>
           ))}
-          <Link href="/contacto" className="btn btn-brass" style={{ padding: "12px 24px" }}>
+          <Link href="/contact" className="btn btn-brass" style={{ padding: "12px 24px" }}>
             Agendar consulta
           </Link>
         </nav>

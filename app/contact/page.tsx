@@ -5,18 +5,18 @@ import Reveal from "@/components/Reveal";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "Contacto",
+  title: "Contact",
   description:
-    "Agende una consulta confidencial con Lex & Asociados. Le respondemos dentro de un día hábil.",
+    "Agende una consulta confidencial con Grant Law. Le respondo dentro de un día hábil.",
 };
 
-export default function ContactoPage() {
+export default function ContactPage() {
   return (
     <main>
       <PageHead
         image="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1800&q=80"
-        imageAlt="Pasillo de oficinas de la firma"
-        crumb="Inicio · Contacto"
+        imageAlt="Pasillo de oficinas"
+        crumb="Inicio · Contact"
         title="Agende una consulta confidencial."
       />
 
@@ -26,10 +26,10 @@ export default function ContactoPage() {
             <Reveal className={styles.contactInfo}>
               <p className="eyebrow">Contacto</p>
               <h2 style={{ fontSize: "clamp(26px,3vw,36px)", marginTop: 16 }}>
-                Le respondemos dentro de un día hábil.
+                Le respondo dentro de un día hábil.
               </h2>
               <p>
-                Cuéntenos brevemente su situación. Toda la información que nos envíe es
+                Cuénteme brevemente su situación. Toda la información que me envíe es
                 estrictamente confidencial.
               </p>
               <div className={styles.contactLines}>
@@ -39,7 +39,7 @@ export default function ContactoPage() {
                 </div>
                 <div>
                   <b>Correo</b>
-                  <span>contacto@[sufirma].com</span>
+                  <span>contacto@grantlaw.com</span>
                 </div>
                 <div>
                   <b>Oficina</b>

@@ -2,10 +2,10 @@ import Link from "next/link";
 import styles from "./Footer.module.css";
 
 const FOOTER_LINKS = [
-  { href: "/firma", label: "La firma" },
-  { href: "/areas", label: "Áreas de práctica" },
-  { href: "/equipo", label: "Equipo" },
-  { href: "/contacto", label: "Contacto" },
+  { href: "/about", label: "About" },
+  { href: "/practice-areas", label: "Practice Areas" },
+  { href: "/experience", label: "Experience" },
+  { href: "/contact", label: "Contact" },
 ] as const;
 
 export default function Footer() {
@@ -14,10 +14,10 @@ export default function Footer() {
       <div className="wrap">
         <div className={styles.footGrid}>
           <Link className={styles.brand} href="/">
-            <span className={styles.monogram}>L·A</span>
+            <span className={styles.monogram}>GL</span>
             <span className={styles.brandName}>
-              Lex &amp; Asociados
-              <small>Estudio Jurídico</small>
+              Grant Law
+              <small>Abogado</small>
             </span>
           </Link>
           <div className={styles.footLinks}>
@@ -29,7 +29,7 @@ export default function Footer() {
           </div>
         </div>
         <div className={styles.footLegal}>
-          <span>© 2026 Lex &amp; Asociados. Todos los derechos reservados.</span>
+          <span>© 2026 Grant Law. Todos los derechos reservados.</span>
           <span>El contenido de este sitio es informativo y no constituye asesoría legal.</span>
         </div>
       </div>

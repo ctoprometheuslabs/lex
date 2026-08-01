@@ -31,9 +31,38 @@
   color: #3d3733;
 }
 
+.creds {
+  margin-top: 10px;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.creds li {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14.5px;
+}
+
+.creds li b {
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--brass);
+  padding-top: 3px;
+}
+
 @media (max-width: 960px) {
   .split {
     grid-template-columns: 1fr;
     gap: 60px;
+  }
+
+  .creds li {
+    grid-template-columns: 1fr;
+    gap: 6px;
   }
 }
