@@ -1,0 +1,45 @@
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 100px;
+}
+
+.contactInfo h2 {
+  font-size: clamp(28px, 3vw, 40px);
+  margin: 16px 0 20px;
+}
+
+.contactInfo > p {
+  color: var(--muted);
+  max-width: 400px;
+  margin-bottom: 36px;
+}
+
+.contactLines {
+  border-top: 1px solid var(--ink);
+}
+
+.contactLines div {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 24px;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14.5px;
+}
+
+.contactLines b {
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--oxide);
+  font-weight: 600;
+  padding-top: 2px;
+}
+
+@media (max-width: 1000px) {
+  .contactGrid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+}

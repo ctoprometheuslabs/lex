@@ -1,71 +1,54 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import styles from "./Topbar.module.css";
 
 const NAV_LINKS = [
-  { href: "/", label: "Inicio" },
-  { href: "/firma", label: "La firma" },
-  { href: "/areas", label: "Áreas de práctica" },
-  { href: "/equipo", label: "Equipo" },
-  { href: "/contacto", label: "Contacto" },
+  { href: "#areas", label: "Áreas de práctica" },
+  { href: "#perfil", label: "Perfil" },
+  { href: "#proceso", label: "Cómo trabajo" },
+  { href: "#contacto", label: "Contacto" },
 ] as const;
 
+/**
+ * Topbar de la one-page (`.topbar` en el mockup): nav de anclas a las
+ * secciones de la misma página, borde inferior al hacer scroll > 20px y
+ * menú hamburguesa bajo 720px.
+ */
 export default function Topbar() {
-  const pathname = usePathname();
-  const [solid, setSolid] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [prevPathname, setPrevPathname] = useState(pathname);
 
-  // Clase .solid al hacer scroll > 40px (equivalente a onScroll() del borrador).
   useEffect(() => {
     function onScroll() {
-      setSolid(window.scrollY > 40);
+      setScrolled(window.scrollY > 20);
     }
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Cierra el menú móvil al navegar (equivalente a nav.classList.remove('open') en
-  // render()). Se ajusta durante el render, no en un efecto, siguiendo el patrón
-  // de React para derivar estado a partir de un cambio de prop.
-  if (pathname !== prevPathname) {
-    setPrevPathname(pathname);
-    setOpen(false);
-  }
-
+  const topbarClassName = scrolled ? `${styles.topbar} ${styles.scrolled}` : styles.topbar;
   const navClassName = open ? `${styles.main} ${styles.open}` : styles.main;
-  const topbarClassName = solid ? `${styles.topbar} ${styles.solid}` : styles.topbar;
 
   return (
     <header className={topbarClassName}>
       <div className={styles.topbarInner}>
-        <Link className={styles.brand} href="/">
-          <span className={styles.monogram}>L·A</span>
-          <span className={styles.brandName}>
-            Lex &amp; Asociados
-            <small>Estudio Jurídico</small>
-          </span>
-        </Link>
+        <a className={styles.wordmark} href="#top">
+          GRANT<span> LAW</span>
+        </a>
 
         <nav className={navClassName} id="site-nav">
           {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={pathname === link.href ? styles.active : undefined}
-              aria-current={pathname === link.href ? "page" : undefined}
-            >
+            <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
               {link.label}
-            </Link>
+            </a>
           ))}
-          <Link href="/contacto" className="btn btn-brass" style={{ padding: "12px 24px" }}>
-            Agendar consulta
-          </Link>
         </nav>
+
+        <a href="#contacto" className="pill oxide">
+          Agendar consulta
+        </a>
 
         <button
           type="button"

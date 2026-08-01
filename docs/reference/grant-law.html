@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grant Law — Abogado</title>
+<meta name="description" content="Grant Law. Abogado. Asesoría legal estratégica en derecho corporativo, litigios, laboral, inmobiliario y familia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAFAF7;
+    --ink:#1B1A17;
+    --oxide:#8A2E2B;
+    --oxide-deep:#6E2321;
+    --muted:#6F6B63;
+    --line:#E6E3DC;
+    --line-dark:rgba(27,26,23,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Archivo',system-ui,sans-serif;
+    background:var(--paper);color:var(--ink);
+    font-size:16px;line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--oxide);color:#fff}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+
+  .wrap{max-width:1280px;margin:0 auto;padding:0 48px}
+
+  .label{
+    font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:600;color:var(--oxide);
+  }
+  h1,h2,h3{font-weight:700;line-height:1.08;letter-spacing:-.02em}
+
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* ---------- Topbar ---------- */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(250,250,247,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid transparent;transition:border-color .3s;
+  }
+  .topbar.scrolled{border-bottom-color:var(--line)}
+  .topbar-inner{
+    max-width:1280px;margin:0 auto;padding:0 48px;height:76px;
+    display:flex;align-items:center;justify-content:space-between;gap:32px;
+  }
+  .wordmark{font-weight:900;font-size:17px;letter-spacing:.02em}
+  .wordmark span{color:var(--oxide)}
+  nav.main{display:flex;align-items:center;gap:34px}
+  nav.main a{
+    font-size:13.5px;font-weight:500;color:var(--muted);
+    transition:color .2s;
+  }
+  nav.main a:hover{color:var(--ink)}
+  .pill{
+    display:inline-flex;align-items:center;gap:10px;
+    font-size:13.5px;font-weight:600;
+    padding:12px 26px;border-radius:999px;cursor:pointer;
+    background:var(--ink);color:#fff;border:1px solid var(--ink);
+    transition:background .25s,border-color .25s;
+  }
+  .pill:hover{background:var(--oxide);border-color:var(--oxide)}
+  .pill.oxide{background:var(--oxide);border-color:var(--oxide)}
+  .pill.oxide:hover{background:var(--oxide-deep);border-color:var(--oxide-deep)}
+  .pill.ghost{background:transparent;color:var(--ink)}
+  .pill.ghost:hover{background:var(--ink);color:#fff}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+  .menu-toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;padding:190px 0 0}
+  .hero .grid-lines{
+    position:absolute;inset:0;pointer-events:none;
+    max-width:1280px;margin:0 auto;padding:0 48px;
+    display:grid;grid-template-columns:repeat(3,1fr);
+  }
+  .hero .grid-lines i{border-left:1px solid var(--line)}
+  .hero .grid-lines i:first-child{border-left:none}
+  .hero-inner{position:relative}
+  .hero .kicker{
+    font-size:13px;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:600;color:var(--muted);margin-bottom:28px;
+  }
+  .hero .kicker b{color:var(--oxide);font-weight:600}
+  .hero h1{
+    font-size:clamp(64px,11vw,164px);
+    font-weight:900;letter-spacing:-.03em;line-height:.94;
+    text-transform:uppercase;
+  }
+  .hero h1 .law{color:var(--oxide)}
+  .hero-sub{
+    display:flex;justify-content:space-between;align-items:flex-end;gap:60px;
+    margin-top:44px;padding-top:28px;border-top:1px solid var(--ink);
+  }
+  .hero-sub h2{font-size:clamp(20px,2.2vw,28px);font-weight:600;max-width:520px;letter-spacing:-.01em}
+  .hero-sub .side{max-width:380px}
+  .hero-sub .side p{font-size:15px;color:var(--muted);margin-bottom:24px}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-photo{margin-top:80px;height:520px;overflow:hidden}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.7) contrast(1.02)}
+
+  /* ---------- Banda de declaración ---------- */
+  .statement{background:var(--oxide);color:#fff;padding:110px 0}
+  .statement .cols{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center}
+  .statement h2{font-size:clamp(30px,3.6vw,48px);font-weight:700;letter-spacing:-.02em}
+  .statement p{color:rgba(255,255,255,.82);margin-bottom:28px;font-size:16.5px}
+  .statement .link{
+    font-size:14px;font-weight:600;color:#fff;
+    border-bottom:1px solid rgba(255,255,255,.5);padding-bottom:4px;
+    transition:border-color .2s;
+  }
+  .statement .link:hover{border-color:#fff}
+
+  /* ---------- Secciones ---------- */
+  section{padding:110px 0}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:64px}
+  .section-head h2{font-size:clamp(30px,3.4vw,44px);margin-top:16px;max-width:640px}
+  .section-head .note{max-width:360px;font-size:15px;color:var(--muted)}
+
+  /* ---------- Áreas (índice numerado) ---------- */
+  .areas{border-top:1px solid var(--ink)}
+  .area-row{
+    display:grid;grid-template-columns:110px 1.1fr 1.6fr auto;gap:36px;align-items:center;
+    padding:34px 0;border-bottom:1px solid var(--line);
+    transition:background .2s;
+  }
+  .area-row:hover{background:#fff}
+  .area-num{font-size:14px;font-weight:600;color:var(--muted)}
+  .area-row h3{font-size:clamp(20px,2vw,26px);font-weight:700;letter-spacing:-.01em;transition:color .2s}
+  .area-row:hover h3{color:var(--oxide)}
+  .area-row p{font-size:14.5px;color:var(--muted);max-width:560px}
+  .area-go{
+    font-size:13px;font-weight:600;white-space:nowrap;color:var(--ink);
+    opacity:0;transform:translateX(-8px);transition:.25s;
+  }
+  .area-row:hover .area-go{opacity:1;transform:none}
+
+  /* ---------- Banda fotográfica ---------- */
+  .photo-band{height:440px;overflow:hidden}
+  .photo-band img{width:100%;height:100%;object-fit:cover;filter:saturate(.7)}
+
+  /* ---------- Perfil ---------- */
+  .profile{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .profile-grid{display:grid;grid-template-columns:440px 1fr;gap:90px;align-items:start}
+  .portrait{overflow:hidden}
+  .portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(.35) contrast(1.03)}
+  .profile-copy h2{font-size:clamp(28px,3vw,40px);margin:16px 0 24px}
+  .profile-copy p{color:#3A3833;margin-bottom:18px;font-size:16px}
+  .creds{margin-top:38px;border-top:1px solid var(--ink)}
+  .creds li{
+    list-style:none;display:grid;grid-template-columns:170px 1fr;gap:24px;
+    padding:16px 0;border-bottom:1px solid var(--line);font-size:14.5px;
+  }
+  .creds b{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--oxide);font-weight:600;padding-top:2px}
+
+  /* ---------- Proceso ---------- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink)}
+  .step{padding:40px 32px 8px 0;border-right:1px solid var(--line)}
+  .step:last-child{border-right:none}
+  .step .n{font-size:13px;font-weight:600;color:var(--oxide);display:block;margin-bottom:18px}
+  .step h3{font-size:19px;font-weight:700;margin-bottom:10px;letter-spacing:-.01em}
+  .step p{font-size:14.5px;color:var(--muted)}
+
+  /* ---------- Testimonio ---------- */
+  .quote{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .quote-inner{max-width:880px;margin:0 auto;text-align:center}
+  .quote-mark{font-size:64px;font-weight:900;color:var(--oxide);line-height:1;display:block;margin-bottom:8px}
+  .quote p{font-size:clamp(20px,2.4vw,28px);font-weight:600;letter-spacing:-.01em;line-height:1.4;margin-bottom:28px}
+  .quote footer{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+  /* ---------- Contacto ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:100px}
+  .contact-info h2{font-size:clamp(28px,3vw,40px);margin:16px 0 20px}
+  .contact-info>p{color:var(--muted);max-width:400px;margin-bottom:36px}
+  .contact-lines{border-top:1px solid var(--ink)}
+  .contact-lines div{
+    display:grid;grid-template-columns:130px 1fr;gap:24px;
+    padding:15px 0;border-bottom:1px solid var(--line);font-size:14.5px;
+  }
+  .contact-lines b{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--oxide);font-weight:600;padding-top:2px}
+  .form{display:grid;gap:26px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .field label{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--muted);margin-bottom:10px}
+  .field input,.field select,.field textarea{
+    width:100%;border:none;border-bottom:1px solid var(--line-dark);background:transparent;
+    padding:10px 2px 12px;font-family:'Archivo',sans-serif;font-size:15.5px;color:var(--ink);
+    border-radius:0;transition:border-color .25s;
+  }
+  .field textarea{min-height:110px;resize:vertical}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-bottom-color:var(--oxide)}
+  .form-note{font-size:12.5px;color:var(--muted)}
+  .form-ok{border-left:2px solid var(--oxide);background:#fff;padding:16px 20px;font-size:14px;display:none}
+
+  /* ---------- Footer ---------- */
+  footer.site{border-top:1px solid var(--line);padding:44px 0;font-size:13px;color:var(--muted)}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .foot .wordmark{font-size:14px;color:var(--ink)}
+  .foot-links{display:flex;gap:26px}
+  .foot-links a:hover{color:var(--ink)}
+  .foot-legal{margin-top:18px;font-size:12px;color:#9B968D}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1000px){
+    .wrap,.topbar-inner{padding-left:28px;padding-right:28px}
+    .statement .cols,.profile-grid,.contact-grid{grid-template-columns:1fr;gap:56px}
+    .portrait{max-width:420px}
+    .steps{grid-template-columns:1fr 1fr}
+    .step{border-right:none;border-bottom:1px solid var(--line);padding:32px 0 24px}
+    .area-row{grid-template-columns:64px 1fr auto;grid-template-rows:auto auto}
+    .area-row p{grid-column:2/3}
+    .hero-sub{flex-direction:column;align-items:flex-start;gap:28px}
+  }
+  @media (max-width:720px){
+    nav.main{
+      position:fixed;top:76px;right:0;left:0;background:var(--paper);
+      flex-direction:column;gap:0;padding:8px 0 20px;display:none;
+      border-bottom:1px solid var(--line);
+    }
+    nav.main.open{display:flex}
+    nav.main a{padding:14px 28px;width:100%}
+    .menu-toggle{display:block}
+    .topbar .pill{display:none}
+    section{padding:80px 0}
+    .steps{grid-template-columns:1fr}
+    .form-row{grid-template-columns:1fr}
+    .hero{padding-top:150px}
+    .hero-photo{height:320px;margin-top:56px}
+    .photo-band{height:260px}
+    .section-head{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a class="wordmark" href="#top">GRANT<span> LAW</span></a>
+    <nav class="main" id="nav">
+      <a href="#areas">Áreas de práctica</a>
+      <a href="#perfil">Perfil</a>
+      <a href="#proceso">Cómo trabajo</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="#contacto" class="pill oxide">Agendar consulta</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <div class="hero">
+    <div class="grid-lines" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="wrap hero-inner">
+      <p class="kicker reveal">Abogado · <b>Derecho corporativo — Litigios — Contratos</b></p>
+      <h1 class="reveal">Grant<br><span class="law">Law</span></h1>
+      <div class="hero-sub reveal">
+        <h2>Asesoría legal con criterio. Representación con resultados.</h2>
+        <div class="side">
+          <p>Atiendo personalmente cada caso: análisis riguroso, comunicación directa y una estrategia diseñada para su situación — no una plantilla.</p>
+          <div class="hero-ctas">
+            <a href="#contacto" class="pill oxide">Agendar una consulta</a>
+            <a href="#areas" class="pill ghost">Áreas de práctica</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-photo reveal">
+      <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1800&q=80" alt="Columnas de un edificio de tribunales" loading="lazy">
+    </div>
+  </div>
+
+  <!-- ============ DECLARACIÓN ============ -->
+  <div class="statement">
+    <div class="wrap cols">
+      <h2 class="reveal">La estrategia correcta cambia el resultado.</h2>
+      <div class="reveal">
+        <p>Ejerzo el derecho con una convicción simple: los asuntos importantes merecen la atención directa de quien lleva el caso. Sin intermediarios, sin promesas vacías y con total franqueza sobre lo que puede esperar.</p>
+        <a class="link" href="#perfil">Conozca mi trayectoria</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ÁREAS ============ -->
+  <section id="areas">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="label">Áreas de práctica</p>
+          <h2>Cinco áreas. Un mismo estándar.</h2>
+        </div>
+        <p class="note">Si su asunto no corresponde a estas materias, se lo diré con honestidad y lo orientaré hacia el especialista correcto.</p>
+      </div>
+      <div class="areas reveal">
+        <a class="area-row" href="#contacto">
+          <span class="area-num">01</span>
+          <h3>Derecho corporativo</h3>
+          <p>Sociedades, pactos de accionistas, fusiones y adquisiciones, y asesoría permanente a empresas y directorios.</p>
+          <span class="area-go">Consultar →</span>
+        </a>
+        <a class="area-row" href="#contacto">
+          <span class="area-num">02</span>
+          <h3>Litigios civiles y comerciales</h3>
+          <p>Representación estratégica en juicios, disputas contractuales, cobranzas complejas y arbitrajes.</p>
+          <span class="area-go">Consultar →</span>
+        </a>
+        <a class="area-row" href="#contacto">
+          <span class="area-num">03</span>
+          <h3>Derecho laboral</h3>
+          <p>Defensa de empleadores y ejecutivos: desvinculaciones, cumplimiento normativo y negociación.</p>
+          <span class="area-go">Consultar →</span>
+        </a>
+        <a class="area-row" href="#contacto">
+          <span class="area-num">04</span>
+          <h3>Inmobiliario y contratos</h3>
+          <p>Estudios de títulos, compraventas, arriendos comerciales y estructuración de operaciones.</p>
+          <span class="area-go">Consultar →</span>
+        </a>
+        <a class="area-row" href="#contacto">
+          <span class="area-num">05</span>
+          <h3>Familia y sucesiones</h3>
+          <p>Planificación patrimonial y sucesoria, testamentos y protección del patrimonio familiar.</p>
+          <span class="area-go">Consultar →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="photo-band reveal">
+    <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1800&q=80" alt="Documentos legales y pluma sobre un escritorio" loading="lazy">
+  </div>
+
+  <!-- ============ PERFIL ============ -->
+  <section class="profile" id="perfil">
+    <div class="wrap">
+      <div class="profile-grid">
+        <div class="portrait reveal">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80" alt="Retrato del abogado" loading="lazy">
+        </div>
+        <div class="profile-copy reveal">
+          <p class="label">Perfil</p>
+          <h2>Un solo responsable de su caso, de principio a fin.</h2>
+          <p>Con más de quince años de ejercicio en asesoría corporativa y litigios de alta complejidad, decidí ejercer de forma independiente para ofrecer lo que las grandes estructuras no siempre permiten: atención directa, estrategia a la medida y honorarios transparentes.</p>
+          <p>Mi regla de oro es decirle la verdad sobre su caso, aunque no sea lo que quiere escuchar. Esa franqueza es la base de una defensa seria.</p>
+          <ul class="creds">
+            <li><b>Formación</b><span>Licenciado en Derecho, Universidad de Chile · LL.M., [Universidad extranjera]</span></li>
+            <li><b>Admisión</b><span>Abogado habilitado, Corte Suprema de Chile</span></li>
+            <li><b>Experiencia</b><span>Ex asociado senior en firma de primer nivel · Asesor de directorios</span></li>
+            <li><b>Idiomas</b><span>Español · Inglés</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROCESO ============ -->
+  <section id="proceso">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="label">Cómo trabajo</p>
+          <h2>Un proceso claro, sin sorpresas.</h2>
+        </div>
+      </div>
+      <div class="steps reveal">
+        <div class="step">
+          <span class="n">01</span>
+          <h3>Consulta confidencial</h3>
+          <p>Me cuenta su situación. Toda la información queda protegida por secreto profesional desde el primer contacto.</p>
+        </div>
+        <div class="step">
+          <span class="n">02</span>
+          <h3>Diagnóstico honesto</h3>
+          <p>Evalúo su caso con rigor y le digo con franqueza qué puede esperar, incluyendo riesgos y alternativas.</p>
+        </div>
+        <div class="step">
+          <span class="n">03</span>
+          <h3>Estrategia y ejecución</h3>
+          <p>Diseño la estrategia, acordamos honorarios transparentes y ejecuto manteniéndolo informado en cada etapa.</p>
+        </div>
+        <div class="step">
+          <span class="n">04</span>
+          <h3>Resolución</h3>
+          <p>Cierro el asunto buscando el mejor resultado posible y le explico en lenguaje claro qué significa para usted.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIO ============ -->
+  <div class="quote">
+    <section>
+      <div class="wrap quote-inner reveal">
+        <span class="quote-mark">“</span>
+        <p>Después de dos años de conflicto, resolvió nuestro juicio en meses con una estrategia que ningún otro abogado nos había propuesto. Directo, riguroso y honesto con las expectativas.</p>
+        <footer>Cliente particular — Litigio civil</footer>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ CONTACTO ============ -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <p class="label">Contacto</p>
+          <h2>Cuénteme su caso.</h2>
+          <p>Le respondo dentro de un día hábil. Toda la información que envíe es estrictamente confidencial.</p>
+          <div class="contact-lines">
+            <div><b>Teléfono</b><span>+56 9 0000 0000</span></div>
+            <div><b>Correo</b><span>contacto@grantlaw.com</span></div>
+            <div><b>Oficina</b><span>Av. [Dirección] 000, Of. 000, Las Condes, Santiago</span></div>
+            <div><b>Horario</b><span>Lunes a viernes · 9:00 – 18:30 hrs</span></div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="form">
+            <div class="form-row">
+              <div class="field"><label for="f-nombre">Nombre completo</label><input id="f-nombre" type="text" autocomplete="name"></div>
+              <div class="field"><label for="f-tel">Teléfono</label><input id="f-tel" type="tel" autocomplete="tel"></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label for="f-mail">Correo electrónico</label><input id="f-mail" type="email" autocomplete="email"></div>
+              <div class="field"><label for="f-area">Área de consulta</label>
+                <select id="f-area">
+                  <option>Derecho corporativo</option><option>Litigios civiles y comerciales</option>
+                  <option>Derecho laboral</option><option>Inmobiliario y contratos</option>
+                  <option>Familia y sucesiones</option><option>Otra materia</option>
+                </select>
+              </div>
+            </div>
+            <div class="field"><label for="f-msg">Describa brevemente su situación</label><textarea id="f-msg"></textarea></div>
+            <p class="form-note">El envío de este formulario no crea una relación abogado–cliente.</p>
+            <button class="pill" id="sendBtn" type="button" style="justify-self:start">Enviar consulta</button>
+            <div class="form-ok" id="formOk">Su consulta fue enviada. Le responderé dentro de un día hábil. Gracias por su confianza.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <span class="wordmark">GRANT<span style="color:var(--oxide)"> LAW</span></span>
+      <div class="foot-links">
+        <a href="#areas">Áreas</a>
+        <a href="#perfil">Perfil</a>
+        <a href="#proceso">Cómo trabajo</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <span>© 2026 Grant Law. Todos los derechos reservados.</span>
+    </div>
+    <p class="foot-legal">El contenido de este sitio es informativo y no constituye asesoría legal.</p>
+  </div>
+</footer>
+
+<script>
+  const bar = document.getElementById('topbar');
+  window.addEventListener('scroll', () => bar.classList.toggle('scrolled', window.scrollY > 20), {passive:true});
+
+  document.getElementById('menuToggle').addEventListener('click', () =>
+    document.getElementById('nav').classList.toggle('open'));
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    }, {threshold:0.08});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  }
+
+  document.getElementById('sendBtn').addEventListener('click', () =>
+    document.getElementById('formOk').style.display = 'block');
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+.areas {
+  border-top: 1px solid var(--ink);
+}
+
+.areaRow {
+  display: grid;
+  grid-template-columns: 110px 1.1fr 1.6fr auto;
+  gap: 36px;
+  align-items: center;
+  padding: 34px 0;
+  border-bottom: 1px solid var(--line);
+  transition: background .2s;
+}
+
+.areaRow:hover {
+  background: #fff;
+}
+
+.areaNum {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.areaRow h3 {
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 700;
+  letter-spacing: -.01em;
+  transition: color .2s;
+}
+
+.areaRow:hover h3 {
+  color: var(--oxide);
+}
+
+.areaRow p {
+  font-size: 14.5px;
+  color: var(--muted);
+  max-width: 560px;
+}
+
+.areaGo {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: .25s;
+}
+
+.areaRow:hover .areaGo {
+  opacity: 1;
+  transform: none;
+}
+
+@media (max-width: 1000px) {
+  .areaRow {
+    grid-template-columns: 64px 1fr auto;
+    grid-template-rows: auto auto;
+  }
+
+  .areaRow p {
+    grid-column: 2 / 3;
+  }
+}

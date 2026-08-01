@@ -1,63 +1,65 @@
-import type { ReactNode } from "react";
-import Link from "next/link";
-import ParallaxLayer from "./ParallaxLayer";
+import Image from "next/image";
+import Reveal from "./Reveal";
 import styles from "./Hero.module.css";
-
-type HeroCta = {
-  label: string;
-  href: string;
-  variant: "brass" | "light";
-};
 
 type HeroProps = {
   image: string;
-  imageAlt?: string;
-  speed?: number;
-  kicker: string;
-  title: ReactNode;
-  lead: string;
-  ctas: HeroCta[];
+  imageAlt: string;
 };
 
 /**
- * Sección `.hero` de la portada: fondo full-bleed con parallax (vía
- * `ParallaxLayer`, mismo mecanismo que `ParallaxBanner`/`PageHead`) y un
- * marco de doble filete grabado ("EST. MMXXVI") con el mensaje principal.
+ * Hero tipográfico de la one-page (`.hero` en el mockup): sin parallax,
+ * H1 gigante con grid-lines verticales de fondo y foto full-bleed debajo.
  */
-export default function Hero({
-  image,
-  imageAlt = "",
-  speed = 0.25,
-  kicker,
-  title,
-  lead,
-  ctas,
-}: HeroProps) {
+export default function Hero({ image, imageAlt }: HeroProps) {
   return (
-    <section className={styles.hero}>
-      <ParallaxLayer
-        image={image}
-        imageAlt={imageAlt}
-        speed={speed}
-        className={styles.heroBg}
-        sizes="100vw"
-        priority
-      />
-      <div className={styles.heroInner}>
-        <div className={styles.heroFrame}>
-          <p className={styles.kicker}>{kicker}</p>
-          <h1>{title}</h1>
-          <p className={styles.lead}>{lead}</p>
-          <div className={styles.heroCtas}>
-            {ctas.map((cta) => (
-              <Link key={cta.label} href={cta.href} className={`btn btn-${cta.variant}`}>
-                {cta.label}
-              </Link>
-            ))}
-          </div>
-        </div>
+    <div className={styles.hero}>
+      <div className={styles.gridLines} aria-hidden="true">
+        <i></i>
+        <i></i>
+        <i></i>
       </div>
-      <span className={styles.scrollHint}>Desplazar ↓</span>
-    </section>
+      <div className={`wrap ${styles.heroInner}`}>
+        <Reveal>
+          <p className={styles.kicker}>
+            Abogado · <b>Derecho corporativo — Litigios — Contratos</b>
+          </p>
+        </Reveal>
+        <Reveal>
+          <h1 className={styles.h1}>
+            Grant
+            <br />
+            <span className={styles.law}>Law</span>
+          </h1>
+        </Reveal>
+        <Reveal className={styles.heroSub}>
+          <h2>Asesoría legal con criterio. Representación con resultados.</h2>
+          <div className={styles.side}>
+            <p>
+              Atiendo personalmente cada caso: análisis riguroso, comunicación directa y una
+              estrategia diseñada para su situación — no una plantilla.
+            </p>
+            <div className={styles.heroCtas}>
+              <a href="#contacto" className="pill oxide">
+                Agendar una consulta
+              </a>
+              <a href="#areas" className="pill ghost">
+                Áreas de práctica
+              </a>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+      <Reveal className={styles.heroPhoto}>
+        <Image
+          src={image}
+          alt={imageAlt}
+          fill
+          sizes="100vw"
+          style={{ objectFit: "cover" }}
+          priority
+        />
+      </Reveal>
+    </div>
   );
 }

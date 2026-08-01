@@ -1,194 +1,138 @@
-import Link from "next/link";
 import Hero from "@/components/Hero";
-import StatsBar from "@/components/StatsBar";
-import AreaCards from "@/components/AreaCards";
-import ParallaxBanner from "@/components/ParallaxBanner";
-import TeamGrid from "@/components/TeamGrid";
-import Quotes from "@/components/Quotes";
-import CtaBand from "@/components/CtaBand";
+import Statement from "@/components/Statement";
+import AreaIndex from "@/components/AreaIndex";
+import PhotoBand from "@/components/PhotoBand";
+import Profile from "@/components/Profile";
+import Steps from "@/components/Steps";
+import Quote from "@/components/Quote";
+import ContactForm from "@/components/ContactForm";
 import Reveal from "@/components/Reveal";
+import styles from "./page.module.css";
 
-const STATS = [
-  { value: "15+", label: "Años de trayectoria" },
-  { value: "200+", label: "Asuntos resueltos" },
-  { value: "4", label: "Abogados senior" },
-  { value: "100%", label: "Confidencialidad" },
-];
-
-const AREA_CARDS = [
+const AREAS = [
   {
-    numeral: "I.",
+    num: "01",
     title: "Derecho corporativo",
-    description: "Sociedades, M&A, pactos de accionistas y asesoría permanente a empresas.",
-    href: "/areas",
+    description:
+      "Sociedades, pactos de accionistas, fusiones y adquisiciones, y asesoría permanente a empresas y directorios.",
   },
   {
-    numeral: "II.",
+    num: "02",
     title: "Litigios civiles y comerciales",
-    description: "Juicios, disputas contractuales, cobranzas complejas y arbitrajes.",
-    href: "/areas",
+    description:
+      "Representación estratégica en juicios, disputas contractuales, cobranzas complejas y arbitrajes.",
   },
   {
-    numeral: "III.",
+    num: "03",
     title: "Derecho laboral",
-    description: "Defensa de empleadores y ejecutivos, cumplimiento y negociación.",
-    href: "/areas",
+    description:
+      "Defensa de empleadores y ejecutivos: desvinculaciones, cumplimiento normativo y negociación.",
   },
   {
-    numeral: "IV.",
+    num: "04",
     title: "Inmobiliario y contratos",
-    description: "Estudios de títulos, compraventas y estructuración de operaciones.",
-    href: "/areas",
+    description:
+      "Estudios de títulos, compraventas, arriendos comerciales y estructuración de operaciones.",
   },
   {
-    numeral: "V.",
+    num: "05",
     title: "Familia y sucesiones",
-    description: "Planificación patrimonial, testamentos y protección de la familia.",
-    href: "/areas",
+    description:
+      "Planificación patrimonial y sucesoria, testamentos y protección del patrimonio familiar.",
   },
-  {
-    numeral: "VI.",
-    title: "¿Otra materia?",
-    description: "Cuéntenos su caso. Si no es nuestra especialidad, lo derivamos con honestidad.",
-    href: "/contacto",
-  },
-];
+] as const;
 
-const TEAM_PREVIEW = [
+const CREDENTIALS = [
   {
-    photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=700&q=80",
-    name: "R. Contreras M.",
-    role: "Socio fundador",
+    label: "Formación",
+    value: "Licenciado en Derecho, Universidad de Chile · LL.M., [Universidad extranjera]",
   },
+  { label: "Admisión", value: "Abogado habilitado, Corte Suprema de Chile" },
   {
-    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=700&q=80",
-    name: "C. Herrera S.",
-    role: "Socia · Litigios",
+    label: "Experiencia",
+    value: "Ex asociado senior en firma de primer nivel · Asesor de directorios",
   },
-  {
-    photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=700&q=80",
-    name: "D. Fuentes A.",
-    role: "Asociado senior",
-  },
-  {
-    photo: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=700&q=80",
-    name: "V. Morales P.",
-    role: "Asociada · Corporativo",
-  },
-];
-
-const QUOTES = [
-  {
-    quote:
-      "Nos acompañaron en la venta de nuestra empresa familiar de principio a fin. Siempre disponibles, siempre claros, y con un dominio técnico que nos dio total tranquilidad.",
-    author: "Cliente corporativo",
-    context: "Operación de M&A — sector servicios",
-  },
-  {
-    quote:
-      "Después de dos años de conflicto, resolvieron nuestro juicio en meses con una estrategia que ningún otro estudio nos había propuesto. Directos, rigurosos y honestos con las expectativas.",
-    author: "Cliente particular",
-    context: "Litigio civil — disputa contractual",
-  },
+  { label: "Idiomas", value: "Español · Inglés" },
 ];
 
 export default function Home() {
   return (
-    <main>
+    <main id="top">
       <Hero
         image="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1800&q=80"
-        imageAlt="Interior de oficina jurídica"
-        speed={0.25}
-        kicker="Lex & Asociados · Estudio Jurídico"
-        title={
-          <>
-            Asesoría legal con criterio, rigor y <em>resultados</em>.
-          </>
-        }
-        lead="Representamos a empresas y personas en asuntos donde la estrategia jurídica define el resultado. Excelencia técnica, trato directo y confidencialidad absoluta."
-        ctas={[
-          { label: "Agendar una consulta", href: "/contacto", variant: "brass" },
-          { label: "Áreas de práctica", href: "/areas", variant: "light" },
-        ]}
+        imageAlt="Columnas de un edificio de tribunales"
       />
 
-      <StatsBar stats={STATS} />
+      <Statement />
 
-      <section>
+      <section id="areas">
         <div className="wrap">
           <Reveal className="section-head">
-            <p className="eyebrow">Áreas de práctica</p>
-            <h2>Un servicio jurídico integral, con la profundidad de un especialista.</h2>
+            <div>
+              <p className="label">Áreas de práctica</p>
+              <h2>Cinco áreas. Un mismo estándar.</h2>
+            </div>
+            <p className="note">
+              Si su asunto no corresponde a estas materias, se lo diré con honestidad y lo
+              orientaré hacia el especialista correcto.
+            </p>
           </Reveal>
           <Reveal>
-            <AreaCards cards={AREA_CARDS} />
+            <AreaIndex areas={AREAS} />
           </Reveal>
         </div>
       </section>
 
-      <ParallaxBanner
+      <PhotoBand
         image="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1800&q=80"
-        imageAlt="Sala de reuniones de la firma"
-        speed={0.2}
-      >
-        <Reveal>
-          <p className="eyebrow center" style={{ justifyContent: "center", color: "var(--brass-soft)" }}>
-            Nuestra promesa
-          </p>
-          <h2 style={{ marginTop: 18 }}>
-            Cada caso recibe la atención directa de un <em>abogado senior</em>.
-          </h2>
-          <p>
-            Sin intermediarios. Comunicación clara, honorarios transparentes y una estrategia
-            diseñada para su caso — no una plantilla.
-          </p>
-          <Link href="/firma" className="btn btn-light">
-            Conozca la firma
-          </Link>
-        </Reveal>
-      </ParallaxBanner>
+        imageAlt="Documentos legales y pluma sobre un escritorio"
+      />
 
-      <section className="tinted">
-        <div className="wrap center">
-          <Reveal className="section-head">
-            <p className="eyebrow">Nuestro equipo</p>
-            <h2>Abogados que responden con nombre y apellido.</h2>
-          </Reveal>
-          <div style={{ textAlign: "left" }}>
-            <Reveal>
-              <TeamGrid members={TEAM_PREVIEW} href="/equipo" />
+      <Profile
+        image="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80"
+        imageAlt="Retrato del abogado"
+        credentials={CREDENTIALS}
+      />
+
+      <Steps />
+
+      <Quote />
+
+      <section id="contacto">
+        <div className="wrap">
+          <div className={styles.contactGrid}>
+            <Reveal className={styles.contactInfo}>
+              <p className="label">Contacto</p>
+              <h2>Cuénteme su caso.</h2>
+              <p>
+                Le respondo dentro de un día hábil. Toda la información que envíe es
+                estrictamente confidencial.
+              </p>
+              <div className={styles.contactLines}>
+                <div>
+                  <b>Teléfono</b>
+                  <span>+56 9 0000 0000</span>
+                </div>
+                <div>
+                  <b>Correo</b>
+                  <span>contacto@grantlaw.com</span>
+                </div>
+                <div>
+                  <b>Oficina</b>
+                  <span>Av. [Dirección] 000, Of. 000, Las Condes, Santiago</span>
+                </div>
+                <div>
+                  <b>Horario</b>
+                  <span>Lunes a viernes · 9:00 – 18:30 hrs</span>
+                </div>
+              </div>
             </Reveal>
-          </div>
-          <div style={{ marginTop: 54 }}>
             <Reveal>
-              <Link href="/equipo" className="btn btn-solid">
-                Conocer al equipo
-              </Link>
+              <ContactForm />
             </Reveal>
           </div>
         </div>
       </section>
-
-      <section>
-        <div className="wrap center">
-          <Reveal className="section-head">
-            <p className="eyebrow">Lo que dicen los clientes</p>
-            <h2>La confianza se construye con resultados.</h2>
-          </Reveal>
-          <Reveal>
-            <Quotes quotes={QUOTES} />
-          </Reveal>
-        </div>
-      </section>
-
-      <Reveal>
-        <CtaBand
-          eyebrow="Primer paso"
-          title="Su situación legal merece una respuesta seria. Empecemos hoy."
-          description="Agende una consulta confidencial y reciba una evaluación honesta de sus opciones."
-          button={{ label: "Agendar consulta confidencial", href: "/contacto" }}
-        />
-      </Reveal>
     </main>
   );
 }

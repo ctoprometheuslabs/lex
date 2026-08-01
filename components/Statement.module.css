@@ -1,0 +1,44 @@
+.statement {
+  background: var(--oxide);
+  color: #fff;
+  padding: 110px 0;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.statement h2 {
+  font-size: clamp(30px, 3.6vw, 48px);
+  font-weight: 700;
+  letter-spacing: -.02em;
+}
+
+.statement p {
+  color: rgba(255, 255, 255, .82);
+  margin-bottom: 28px;
+  font-size: 16.5px;
+}
+
+.link {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, .5);
+  padding-bottom: 4px;
+  transition: border-color .2s;
+}
+
+.link:hover {
+  border-color: #fff;
+}
+
+@media (max-width: 1000px) {
+  .cols {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+}

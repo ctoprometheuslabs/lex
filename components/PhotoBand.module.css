@@ -1,0 +1,15 @@
+.photoBand {
+  position: relative;
+  height: 440px;
+  overflow: hidden;
+}
+
+.photoBand :global(img) {
+  filter: saturate(.7);
+}
+
+@media (max-width: 720px) {
+  .photoBand {
+    height: 260px;
+  }
+}
