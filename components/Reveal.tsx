@@ -19,9 +19,11 @@ export default function Reveal({ children, className }: RevealProps) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    // Con prefers-reduced-motion, globals.css ya fuerza opacity:1/transform:none
+    // en .reveal sin necesidad de la clase "in" — no hace falta registrar el
+    // observer ni tocar el estado.
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion) {
-      setVisible(true);
       return;
     }
 

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Libre_Caslon_Text, Libre_Franklin } from "next/font/google";
+import Topbar from "@/components/Topbar";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 const libreCaslonText = Libre_Caslon_Text({
@@ -33,7 +35,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${libreCaslonText.variable} ${libreFranklin.variable}`}>
-      <body>{children}</body>
+      <body>
+        <Topbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

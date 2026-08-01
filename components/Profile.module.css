@@ -1,0 +1,81 @@
+.profileGrid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background: var(--rosewood-deep);
+}
+
+.portrait::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(195, 166, 113, .4);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.portrait :global(img) {
+  filter: saturate(.85);
+}
+
+.profileCopy h2 {
+  font-size: clamp(26px, 3vw, 36px);
+  margin: 16px 0 8px;
+}
+
+.role {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--rosewood);
+  margin-bottom: 26px;
+}
+
+.profileCopy p {
+  margin-bottom: 18px;
+  font-weight: 300;
+  color: #3d3733;
+}
+
+.creds {
+  margin-top: 34px;
+  border-top: 1px solid var(--line);
+  list-style: none;
+}
+
+.creds li {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+
+.creds li b {
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--brass);
+  padding-top: 3px;
+}
+
+@media (max-width: 960px) {
+  .profileGrid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .portrait {
+    max-width: 400px;
+  }
+}

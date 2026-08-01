@@ -17,6 +17,7 @@ export default function Topbar() {
   const pathname = usePathname();
   const [solid, setSolid] = useState(false);
   const [open, setOpen] = useState(false);
+  const [prevPathname, setPrevPathname] = useState(pathname);
 
   // Clase .solid al hacer scroll > 40px (equivalente a onScroll() del borrador).
   useEffect(() => {
@@ -28,10 +29,13 @@ export default function Topbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Cierra el menú móvil al navegar (equivalente a nav.classList.remove('open') en render()).
-  useEffect(() => {
+  // Cierra el menú móvil al navegar (equivalente a nav.classList.remove('open') en
+  // render()). Se ajusta durante el render, no en un efecto, siguiendo el patrón
+  // de React para derivar estado a partir de un cambio de prop.
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
     setOpen(false);
-  }, [pathname]);
+  }
 
   const navClassName = open ? `${styles.main} ${styles.open}` : styles.main;
   const topbarClassName = solid ? `${styles.topbar} ${styles.solid}` : styles.topbar;
