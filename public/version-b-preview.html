@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grant Law — Abogado · Versión B</title>
+<meta name="description" content="Grant Law. Abogado. Asesoría legal estratégica en derecho corporativo, litigios, laboral, inmobiliario y familia.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --coal:#141311;
+    --coal-2:#1C1A17;
+    --bone:#EDE8DF;
+    --bone-dim:rgba(237,232,223,.62);
+    --bone-faint:rgba(237,232,223,.38);
+    --ember:#B04A38;
+    --ember-soft:#C96A55;
+    --hairline:rgba(237,232,223,.14);
+    --hairline-soft:rgba(237,232,223,.08);
+    --serif:'Fraunces',Georgia,serif;
+    --sans:'Archivo',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);background:var(--coal);color:var(--bone);
+    font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--ember);color:var(--coal)}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+
+  .wrap{max-width:1240px;margin:0 auto;padding:0 48px}
+
+  .label{
+    font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;
+    font-weight:600;color:var(--ember-soft);
+  }
+  h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.12;letter-spacing:-.01em}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+  }
+
+  /* ---------- Topbar ---------- */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:transparent;transition:background .4s,border-color .4s;
+    border-bottom:1px solid transparent;
+  }
+  .topbar.scrolled{background:rgba(20,19,17,.92);backdrop-filter:blur(10px);border-bottom-color:var(--hairline-soft)}
+  .topbar-inner{
+    max-width:1240px;margin:0 auto;padding:0 48px;height:84px;
+    display:flex;align-items:center;justify-content:space-between;gap:32px;
+  }
+  .wordmark{font-family:var(--sans);font-weight:700;font-size:15px;letter-spacing:.16em}
+  .wordmark span{color:var(--ember-soft)}
+  nav.main{display:flex;align-items:center;gap:38px}
+  nav.main a{
+    font-size:12.5px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--bone-dim);transition:color .25s;
+  }
+  nav.main a:hover{color:var(--bone)}
+  .pill{
+    display:inline-flex;align-items:center;font-size:12.5px;font-weight:600;
+    letter-spacing:.08em;text-transform:uppercase;
+    padding:14px 30px;border-radius:999px;cursor:pointer;
+    border:1px solid var(--ember);background:var(--ember);color:var(--bone);
+    transition:background .3s,border-color .3s,color .3s;
+  }
+  .pill:hover{background:var(--ember-soft);border-color:var(--ember-soft)}
+  .pill.ghost{background:transparent;border-color:var(--hairline);color:var(--bone)}
+  .pill.ghost:hover{border-color:var(--bone);background:transparent}
+  .pill.bone{background:var(--bone);border-color:var(--bone);color:var(--coal)}
+  .pill.bone:hover{background:#fff;border-color:#fff}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+  .menu-toggle span{display:block;width:22px;height:1.5px;background:var(--bone);margin:6px 0}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+    position:relative;padding:160px 0 0;
+  }
+  .hero .grid-lines{
+    position:absolute;inset:0;pointer-events:none;
+    max-width:1240px;margin:0 auto;padding:0 48px;
+    display:grid;grid-template-columns:repeat(3,1fr);
+  }
+  .hero .grid-lines i{border-left:1px solid var(--hairline-soft)}
+  .hero .grid-lines i:first-child{border-left:none}
+  .hero-inner{position:relative}
+  .hero .kicker{
+    font-size:12px;letter-spacing:.3em;text-transform:uppercase;
+    font-weight:500;color:var(--bone-faint);margin-bottom:40px;
+  }
+  .hero h1{
+    font-size:clamp(44px,6.4vw,92px);
+    font-weight:300;max-width:1050px;color:var(--bone);
+  }
+  .hero h1 em{font-style:italic;font-weight:400;color:var(--ember-soft)}
+  .hero-foot{
+    display:flex;justify-content:space-between;align-items:flex-end;gap:60px;
+    margin-top:64px;
+  }
+  .hero-foot .side{max-width:400px}
+  .hero-foot .side p{font-size:15px;color:var(--bone-dim);margin-bottom:28px;font-weight:400}
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+  .hero-stats{
+    margin-top:96px;border-top:1px solid var(--hairline);
+    display:grid;grid-template-columns:repeat(3,1fr);
+  }
+  .hero-stats div{padding:34px 32px 34px 0;border-right:1px solid var(--hairline-soft)}
+  .hero-stats div:last-child{border-right:none}
+  .hero-stats div:nth-child(2),.hero-stats div:nth-child(3){padding-left:32px}
+  .hero-stats strong{
+    display:block;font-family:var(--serif);font-weight:300;font-size:38px;
+    color:var(--bone);line-height:1.1;
+  }
+  .hero-stats span{font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--bone-faint)}
+
+  /* ---------- Banda fotográfica ---------- */
+  .photo-band{height:520px;overflow:hidden;position:relative}
+  .photo-band img{width:100%;height:100%;object-fit:cover;filter:saturate(.55) brightness(.8) contrast(1.05)}
+  .photo-band::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,var(--coal) 0%,transparent 18%,transparent 82%,var(--coal) 100%);pointer-events:none}
+
+  /* ---------- Declaración ---------- */
+  .statement{padding:150px 0}
+  .statement .inner{max-width:900px}
+  .statement h2{
+    font-size:clamp(30px,4vw,54px);font-weight:300;color:var(--bone);
+  }
+  .statement h2 em{font-style:italic;color:var(--ember-soft)}
+  .statement p{margin-top:32px;max-width:560px;color:var(--bone-dim);font-size:16.5px}
+
+  /* ---------- Secciones ---------- */
+  section{padding:130px 0}
+  .section-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:72px}
+  .section-head h2{font-size:clamp(30px,3.6vw,48px);font-weight:300;margin-top:18px;max-width:640px}
+  .section-head .note{max-width:340px;font-size:14.5px;color:var(--bone-dim)}
+
+  /* ---------- Áreas ---------- */
+  .areas{border-top:1px solid var(--hairline)}
+  .area-row{
+    display:grid;grid-template-columns:90px 1fr auto;gap:40px;align-items:baseline;
+    padding:44px 0;border-bottom:1px solid var(--hairline-soft);
+    transition:padding .3s;
+  }
+  .area-num{font-size:12.5px;font-weight:500;letter-spacing:.1em;color:var(--bone-faint)}
+  .area-body h3{
+    font-size:clamp(24px,2.6vw,36px);font-weight:300;color:var(--bone);
+    transition:color .3s;margin-bottom:8px;
+  }
+  .area-row:hover .area-body h3{color:var(--ember-soft)}
+  .area-body p{font-size:14.5px;color:var(--bone-dim);max-width:560px}
+  .area-go{
+    font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    white-space:nowrap;color:var(--bone);opacity:0;transform:translateX(-8px);transition:.3s;
+  }
+  .area-row:hover .area-go{opacity:1;transform:none}
+
+  /* ---------- Perfil ---------- */
+  .profile{background:var(--coal-2);border-top:1px solid var(--hairline-soft);border-bottom:1px solid var(--hairline-soft)}
+  .profile-grid{display:grid;grid-template-columns:420px 1fr;gap:100px;align-items:start}
+  .portrait{overflow:hidden;position:relative}
+  .portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;filter:grayscale(.75) contrast(1.08) brightness(.92)}
+  .portrait::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(20,19,17,.5))}
+  .profile-copy h2{font-size:clamp(28px,3.2vw,44px);font-weight:300;margin:18px 0 28px}
+  .profile-copy h2 em{font-style:italic;color:var(--ember-soft)}
+  .profile-copy p{color:var(--bone-dim);margin-bottom:20px;font-size:16px}
+  .creds{margin-top:44px;border-top:1px solid var(--hairline)}
+  .creds li{
+    list-style:none;display:grid;grid-template-columns:170px 1fr;gap:24px;
+    padding:17px 0;border-bottom:1px solid var(--hairline-soft);font-size:14.5px;color:var(--bone-dim);
+  }
+  .creds b{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ember-soft);font-weight:600;padding-top:2px}
+
+  /* ---------- Método ---------- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--hairline)}
+  .step{padding:44px 36px 8px 0;border-right:1px solid var(--hairline-soft)}
+  .step:last-child{border-right:none}
+  .step:nth-child(n+2){padding-left:36px}
+  .step .n{
+    font-family:var(--serif);font-size:15px;font-style:italic;
+    color:var(--ember-soft);display:block;margin-bottom:22px;
+  }
+  .step h3{font-family:var(--sans);font-size:17px;font-weight:600;letter-spacing:.01em;margin-bottom:12px;color:var(--bone)}
+  .step p{font-size:14px;color:var(--bone-dim)}
+
+  /* ---------- Testimonio ---------- */
+  .quote{border-top:1px solid var(--hairline-soft);border-bottom:1px solid var(--hairline-soft);background:var(--coal-2)}
+  .quote-inner{max-width:920px;margin:0 auto;text-align:center}
+  .quote p{
+    font-family:var(--serif);font-style:italic;font-weight:300;
+    font-size:clamp(22px,3vw,34px);line-height:1.5;color:var(--bone);margin-bottom:36px;
+  }
+  .quote footer{font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--bone-faint);font-weight:500}
+
+  /* ---------- Contacto ---------- */
+  .contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:110px}
+  .contact-info h2{font-size:clamp(30px,3.4vw,48px);font-weight:300;margin:18px 0 24px}
+  .contact-info h2 em{font-style:italic;color:var(--ember-soft)}
+  .contact-info>p{color:var(--bone-dim);max-width:400px;margin-bottom:40px}
+  .contact-lines{border-top:1px solid var(--hairline)}
+  .contact-lines div{
+    display:grid;grid-template-columns:130px 1fr;gap:24px;
+    padding:16px 0;border-bottom:1px solid var(--hairline-soft);font-size:14.5px;color:var(--bone-dim);
+  }
+  .contact-lines b{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ember-soft);font-weight:600;padding-top:2px}
+  .form{display:grid;gap:30px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+  .field label{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--bone-faint);margin-bottom:12px}
+  .field input,.field select,.field textarea{
+    width:100%;border:none;border-bottom:1px solid var(--hairline);background:transparent;
+    padding:10px 2px 14px;font-family:var(--sans);font-size:15.5px;color:var(--bone);
+    border-radius:0;transition:border-color .3s;
+  }
+  .field select{color:var(--bone)}
+  .field select option{background:var(--coal-2);color:var(--bone)}
+  .field textarea{min-height:110px;resize:vertical}
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-bottom-color:var(--ember-soft)}
+  .form-note{font-size:12.5px;color:var(--bone-faint)}
+  .form-ok{border-left:2px solid var(--ember);background:var(--coal-2);padding:16px 20px;font-size:14px;display:none;color:var(--bone-dim)}
+
+  /* ---------- Footer ---------- */
+  footer.site{border-top:1px solid var(--hairline-soft);padding:48px 0;font-size:13px;color:var(--bone-faint)}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .foot .wordmark{font-size:13px;color:var(--bone)}
+  .foot-links{display:flex;gap:28px}
+  .foot-links a{color:var(--bone-faint)}
+  .foot-links a:hover{color:var(--bone)}
+  .foot-legal{margin-top:20px;font-size:12px;color:rgba(237,232,223,.25)}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1000px){
+    .wrap,.topbar-inner{padding-left:28px;padding-right:28px}
+    .profile-grid,.contact-grid{grid-template-columns:1fr;gap:64px}
+    .portrait{max-width:420px}
+    .steps{grid-template-columns:1fr 1fr}
+    .step{border-right:none;border-bottom:1px solid var(--hairline-soft);padding:36px 0 28px}
+    .step:nth-child(n+2){padding-left:0}
+    .hero-foot{flex-direction:column;align-items:flex-start;gap:36px}
+    .area-row{grid-template-columns:56px 1fr;gap:24px}
+    .area-go{display:none}
+  }
+  @media (max-width:720px){
+    nav.main{
+      position:fixed;top:84px;right:0;left:0;background:var(--coal);
+      flex-direction:column;gap:0;padding:8px 0 20px;display:none;
+      border-bottom:1px solid var(--hairline-soft);
+    }
+    nav.main.open{display:flex}
+    nav.main a{padding:15px 28px;width:100%}
+    .menu-toggle{display:block}
+    .topbar .pill{display:none}
+    section{padding:90px 0}
+    .statement{padding:100px 0}
+    .steps{grid-template-columns:1fr}
+    .form-row{grid-template-columns:1fr}
+    .hero{padding-top:130px;min-height:auto}
+    .hero-stats{grid-template-columns:1fr;margin-top:64px}
+    .hero-stats div{border-right:none;border-bottom:1px solid var(--hairline-soft);padding:24px 0}
+    .hero-stats div:nth-child(2),.hero-stats div:nth-child(3){padding-left:0}
+    .photo-band{height:300px}
+    .section-head{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a class="wordmark" href="#top">GRANT<span> LAW</span></a>
+    <nav class="main" id="nav">
+      <a href="#areas">Áreas</a>
+      <a href="#perfil">Perfil</a>
+      <a href="#metodo">Método</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="#contacto" class="pill">Agendar consulta</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <div class="hero">
+    <div class="grid-lines" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="wrap hero-inner">
+      <p class="kicker reveal">Grant Law · Abogado</p>
+      <h1 class="reveal">La defensa seria de los asuntos que <em>importan</em>.</h1>
+      <div class="hero-foot reveal">
+        <div class="side">
+          <p>Derecho corporativo, litigios y contratos. Atiendo personalmente cada caso, con estrategia a la medida y total franqueza sobre lo que puede esperar.</p>
+          <div class="hero-ctas">
+            <a href="#contacto" class="pill">Agendar una consulta</a>
+            <a href="#areas" class="pill ghost">Áreas de práctica</a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-stats reveal">
+        <div><strong>15+</strong><span>Años de ejercicio</span></div>
+        <div><strong>200+</strong><span>Asuntos resueltos</span></div>
+        <div><strong>100%</strong><span>Atención directa</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="photo-band reveal">
+    <img src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1800&q=80" alt="Biblioteca clásica con bustos de mármol" loading="lazy">
+  </div>
+
+  <!-- ============ DECLARACIÓN ============ -->
+  <div class="statement">
+    <div class="wrap inner reveal">
+      <p class="label">Convicción</p>
+      <h2 style="margin-top:20px">Los asuntos importantes merecen la atención de quien lleva el caso — <em>no la de un intermediario</em>.</h2>
+      <p>Ejerzo de forma independiente para ofrecer lo que las grandes estructuras no siempre permiten: trato directo, honorarios transparentes y la verdad sobre su caso, aunque no sea lo que quiere escuchar.</p>
+    </div>
+  </div>
+
+  <!-- ============ ÁREAS ============ -->
+  <section id="areas" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="label">Áreas de práctica</p>
+          <h2>Cinco áreas. Un mismo estándar.</h2>
+        </div>
+        <p class="note">Si su asunto no corresponde a estas materias, se lo diré con honestidad y lo orientaré hacia el especialista correcto.</p>
+      </div>
+      <div class="areas reveal">
+        <a class="area-row" href="#contacto">
+          <span class="area-num">/01</span>
+          <span class="area-body"><h3>Derecho corporativo</h3><p>Sociedades, pactos de accionistas, fusiones y adquisiciones, y asesoría permanente a empresas y directorios.</p></span>
+          <span class="area-go">Consultar →</span>
+        </a>
+        <a class="area-row" href="#contacto">
+          <span class="area-num">/02</span>
+          <span class="area-body"><h3>Litigios civiles y comerciales</h3><p>Representación estratégica en juicios, disputas contractuales, cobranzas complejas y arbitrajes.</p></span>
+          <span class="area-go">Consultar →</span>
+        </a>
+        <a class="area-row" href="#contacto">
+          <span class="area-num">/03</span>
+          <span class="area-body"><h3>Derecho laboral</h3><p>Defensa de empleadores y ejecutivos: desvinculaciones, cumplimiento normativo y negociación.</p></span>
+          <span class="area-go">Consultar →</span>
+        </a>
+        <a class="area-row" href="#contacto">
+          <span class="area-num">/04</span>
+          <span class="area-body"><h3>Inmobiliario y contratos</h3><p>Estudios de títulos, compraventas, arriendos comerciales y estructuración de operaciones.</p></span>
+          <span class="area-go">Consultar →</span>
+        </a>
+        <a class="area-row" href="#contacto">
+          <span class="area-num">/05</span>
+          <span class="area-body"><h3>Familia y sucesiones</h3><p>Planificación patrimonial y sucesoria, testamentos y protección del patrimonio familiar.</p></span>
+          <span class="area-go">Consultar →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PERFIL ============ -->
+  <section class="profile" id="perfil">
+    <div class="wrap">
+      <div class="profile-grid">
+        <div class="portrait reveal">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80" alt="Retrato del abogado" loading="lazy">
+        </div>
+        <div class="profile-copy reveal">
+          <p class="label">Perfil</p>
+          <h2>Un solo responsable de su caso, <em>de principio a fin</em>.</h2>
+          <p>Con más de quince años de ejercicio en asesoría corporativa y litigios de alta complejidad, decidí ejercer de forma independiente para ofrecer lo que las grandes estructuras no siempre permiten: atención directa, estrategia a la medida y honorarios transparentes.</p>
+          <p>Mi regla de oro es decirle la verdad sobre su caso, aunque no sea lo que quiere escuchar. Esa franqueza es la base de una defensa seria.</p>
+          <ul class="creds">
+            <li><b>Formación</b><span>Licenciado en Derecho, Universidad de Chile · LL.M., [Universidad extranjera]</span></li>
+            <li><b>Admisión</b><span>Abogado habilitado, Corte Suprema de Chile</span></li>
+            <li><b>Experiencia</b><span>Ex asociado senior en firma de primer nivel · Asesor de directorios</span></li>
+            <li><b>Idiomas</b><span>Español · Inglés</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MÉTODO ============ -->
+  <section id="metodo">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div>
+          <p class="label">Método</p>
+          <h2>Un proceso claro, sin sorpresas.</h2>
+        </div>
+      </div>
+      <div class="steps reveal">
+        <div class="step">
+          <span class="n">No. 01</span>
+          <h3>Consulta confidencial</h3>
+          <p>Me cuenta su situación. Toda la información queda protegida por secreto profesional desde el primer contacto.</p>
+        </div>
+        <div class="step">
+          <span class="n">No. 02</span>
+          <h3>Diagnóstico honesto</h3>
+          <p>Evalúo su caso con rigor y le digo con franqueza qué puede esperar, incluyendo riesgos y alternativas.</p>
+        </div>
+        <div class="step">
+          <span class="n">No. 03</span>
+          <h3>Estrategia y ejecución</h3>
+          <p>Diseño la estrategia, acordamos honorarios transparentes y ejecuto manteniéndolo informado en cada etapa.</p>
+        </div>
+        <div class="step">
+          <span class="n">No. 04</span>
+          <h3>Resolución</h3>
+          <p>Cierro el asunto buscando el mejor resultado posible y le explico en lenguaje claro qué significa para usted.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIO ============ -->
+  <div class="quote">
+    <section>
+      <div class="wrap">
+        <div class="quote-inner reveal">
+          <p>“Después de dos años de conflicto, resolvió nuestro juicio en meses con una estrategia que ningún otro abogado nos había propuesto. Directo, riguroso y honesto con las expectativas.”</p>
+          <footer>Cliente particular — Litigio civil</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ CONTACTO ============ -->
+  <section id="contacto">
+    <div class="wrap">
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <p class="label">Contacto</p>
+          <h2>Cuénteme <em>su caso</em>.</h2>
+          <p>Le respondo dentro de un día hábil. Toda la información que envíe es estrictamente confidencial.</p>
+          <div class="contact-lines">
+            <div><b>Teléfono</b><span>+56 9 0000 0000</span></div>
+            <div><b>Correo</b><span>contacto@grantlaw.com</span></div>
+            <div><b>Oficina</b><span>Av. [Dirección] 000, Of. 000, Las Condes, Santiago</span></div>
+            <div><b>Horario</b><span>Lunes a viernes · 9:00 – 18:30 hrs</span></div>
+          </div>
+        </div>
+        <div class="reveal">
+          <div class="form">
+            <div class="form-row">
+              <div class="field"><label for="f-nombre">Nombre completo</label><input id="f-nombre" type="text" autocomplete="name"></div>
+              <div class="field"><label for="f-tel">Teléfono</label><input id="f-tel" type="tel" autocomplete="tel"></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label for="f-mail">Correo electrónico</label><input id="f-mail" type="email" autocomplete="email"></div>
+              <div class="field"><label for="f-area">Área de consulta</label>
+                <select id="f-area">
+                  <option>Derecho corporativo</option><option>Litigios civiles y comerciales</option>
+                  <option>Derecho laboral</option><option>Inmobiliario y contratos</option>
+                  <option>Familia y sucesiones</option><option>Otra materia</option>
+                </select>
+              </div>
+            </div>
+            <div class="field"><label for="f-msg">Describa brevemente su situación</label><textarea id="f-msg"></textarea></div>
+            <p class="form-note">El envío de este formulario no crea una relación abogado–cliente.</p>
+            <button class="pill bone" id="sendBtn" type="button" style="justify-self:start">Enviar consulta</button>
+            <div class="form-ok" id="formOk">Su consulta fue enviada. Le responderé dentro de un día hábil. Gracias por su confianza.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <span class="wordmark">GRANT<span style="color:var(--ember-soft)"> LAW</span></span>
+      <div class="foot-links">
+        <a href="#areas">Áreas</a>
+        <a href="#perfil">Perfil</a>
+        <a href="#metodo">Método</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <span>© 2026 Grant Law. Todos los derechos reservados.</span>
+    </div>
+    <p class="foot-legal">El contenido de este sitio es informativo y no constituye asesoría legal.</p>
+  </div>
+</footer>
+
+<script>
+  const bar = document.getElementById('topbar');
+  window.addEventListener('scroll', () => bar.classList.toggle('scrolled', window.scrollY > 30), {passive:true});
+
+  document.getElementById('menuToggle').addEventListener('click', () =>
+    document.getElementById('nav').classList.toggle('open'));
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    }, {threshold:0.08});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  }
+
+  document.getElementById('sendBtn').addEventListener('click', () =>
+    document.getElementById('formOk').style.display = 'block');
+</script>
+</body>
+</html>
