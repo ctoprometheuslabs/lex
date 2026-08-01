@@ -1,23 +1,31 @@
 import type { Metadata } from "next";
-import { Archivo } from "next/font/google";
+import { Libre_Caslon_Text, Libre_Franklin } from "next/font/google";
 import Topbar from "@/components/Topbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-const archivo = Archivo({
+const libreCaslonText = Libre_Caslon_Text({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "900"],
-  variable: "--font-archivo",
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--serif",
+  display: "swap",
+});
+
+const libreFranklin = Libre_Franklin({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--sans",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Grant Law — Abogado",
-    template: "%s · Grant Law",
+    default: "Lex & Asociados",
+    template: "%s · Lex & Asociados",
   },
   description:
-    "Grant Law. Abogado. Asesoría legal estratégica en derecho corporativo, litigios, laboral, inmobiliario y familia.",
+    "Lex & Asociados. Estudio jurídico de excelencia: derecho corporativo, litigios, laboral, inmobiliario y familia.",
 };
 
 export default function RootLayout({
@@ -26,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={archivo.variable}>
+    <html lang="es" className={`${libreCaslonText.variable} ${libreFranklin.variable}`}>
       <body>
         <Topbar />
         {children}

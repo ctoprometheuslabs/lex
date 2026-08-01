@@ -1,0 +1,40 @@
+.values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(195, 166, 113, .3);
+  border: 1px solid rgba(195, 166, 113, .3);
+  text-align: left;
+}
+
+.value {
+  background: var(--rosewood);
+  padding: 44px 36px;
+  color: var(--ivory);
+}
+
+.value h3 {
+  font-size: 20px;
+  margin: 16px 0 12px;
+  color: var(--ivory);
+}
+
+.value p {
+  font-size: 14.5px;
+  font-weight: 300;
+  color: rgba(245, 242, 235, .75);
+}
+
+.indexNum {
+  display: block;
+  font-family: var(--serif);
+  font-size: 15px;
+  letter-spacing: .1em;
+  color: var(--brass-soft);
+}
+
+@media (max-width: 960px) {
+  .values {
+    grid-template-columns: 1fr;
+  }
+}

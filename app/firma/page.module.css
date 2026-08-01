@@ -1,0 +1,39 @@
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.img {
+  position: relative;
+  aspect-ratio: 4 / 3.4;
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.img::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(195, 166, 113, .45);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.img :global(img) {
+  filter: saturate(.85);
+}
+
+.copy p {
+  font-weight: 300;
+  margin-bottom: 18px;
+  color: #3d3733;
+}
+
+@media (max-width: 960px) {
+  .split {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+}

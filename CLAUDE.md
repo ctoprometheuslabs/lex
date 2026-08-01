@@ -1,23 +1,16 @@
-# CLAUDE.md — Sitio Web Grant Law (Abogado)
+# CLAUDE.md — Sitio Web Estudio Jurídico (Lex & Asociados)
 
 Contexto persistente del proyecto. Leer antes de cualquier tarea.
 
 ## Qué es este proyecto
 
-Sitio web para **Grant Law**, abogado individual (marca real del cliente), contratado
-por USD $150 con entrega en 1–2 días hábiles. **Next.js (App Router) + TypeScript**,
-desplegado en **Vercel** con dominio del cliente. Formulario de contacto 100%
-funcional vía **SMTP de Gmail (nodemailer)**.
+Sitio web premium para una firma de servicios legales, contratado por USD $150 con
+entrega en 1–2 días hábiles. Migra de un borrador estático (`index.html`, router por
+hash) a **Next.js (App Router) + TypeScript**, desplegado en **Vercel** con dominio
+del cliente. Formulario de contacto 100% funcional vía **SMTP de Gmail (nodemailer)**.
 
-- El sitio es **one-page**: una sola landing con secciones ancladas
-  (`#areas`, `#perfil`, `#proceso`, `#contacto`). Las rutas antiguas
-  (`/firma`, `/areas`, `/equipo`, `/contacto`) redirigen a sus anclas.
-- Historia: la v1 ("Lex & Asociados", estética *big law* rosewood/brass) fue
-  **rechazada por el cliente** ("sigue pareciendo IA"). La v2 vigente sigue las
-  referencias de estilo del cliente (odesa.com.ar, roster-store.vercel.app):
-  editorial, claro, tipografía grande, un solo acento de color.
-- Es UNA persona, no una firma: el copy va en primera persona singular
-  ("Atiendo personalmente cada caso"). No existe sección "Equipo"; existe "Perfil".
+- "Lex & Asociados" es nombre **placeholder** hasta que el cliente defina su marca.
+- Estética objetivo: *big law* — sobria, elegante, confiable. Nunca "startup" ni genérica.
 - Idioma del sitio: español formal (trato de "usted").
 
 ## Agentes del proyecto (`.claude/agents/`)
@@ -35,33 +28,29 @@ la frontera, `architect` define el contrato entre ambos.
 
 ```
 app/
-├── layout.tsx           # Fuente Archivo, Topbar, Footer, metadata base
-├── page.tsx             # /  (one-page: Hero, Declaración, Áreas, Perfil,
-│                        #     Proceso, Testimonio, Contacto)
+├── layout.tsx           # Fuentes, Topbar, Footer, metadata base
+├── page.tsx             # /            (Inicio)
+├── firma/page.tsx       # /firma
+├── areas/page.tsx       # /areas
+├── equipo/page.tsx      # /equipo
+├── contacto/page.tsx    # /contacto   (formulario)
 └── api/contact/route.ts # POST — envío de correos (runtime nodejs OBLIGATORIO)
-components/              # Topbar, Footer, secciones de la landing, ContactForm
+components/              # Topbar, Footer, Hero, ParallaxBanner, TeamGrid...
 lib/mailer.ts            # Único transporte nodemailer
-next.config.ts           # redirects: /firma→/#perfil, /areas→/#areas,
-                         #            /equipo→/#perfil, /contacto→/#contacto
 public/                  # Imágenes (usar next/image)
 ```
 
-Referencia visual canónica: `docs/reference/grant-law.html` (mockup aprobado por el
-cliente). La migración es 1:1. El borrador v1 rechazado queda archivado en
-`docs/reference/lex-asociados-v1.html` — NO usarlo como referencia de estilo.
+Referencia visual canónica: el borrador `index.html` en la raíz. La migración es 1:1.
 
-## Sistema de diseño (resumen)
+## Sistema de diseño (resumen — detalle completo en el agente frontend)
 
-- Colores SOLO vía variables: `--paper #FAFAF7` (fondo), `--ink #1B1A17` (texto),
-  `--oxide #8A2E2B` (único acento), `--oxide-deep #6E2321`, `--muted #6F6B63`,
-  `--line #E6E3DC` (hairlines), `--line-dark rgba(27,26,23,.14)`.
-- Tipografía: **Archivo** (única familia; 400/500/600/700/900). Display en 900
-  con tracking negativo; labels en uppercase con tracking amplio.
-- Firma visual: retícula editorial con hairlines, numeración 01–05, botones pill
-  (`border-radius: 999px`), campos de formulario planos con solo borde inferior,
-  fotografía desaturada (`saturate(.7)`), reveals sutiles con
-  `prefers-reduced-motion` respetado. Sin parallax, sin marcos decorativos,
-  sin monogramas ni numerales romanos.
+- Colores SOLO vía variables: `--rosewood #3F2229`, `--rosewood-deep #2C171D`,
+  `--brass #A9854B`, `--brass-soft #C3A671`, `--ivory #F5F2EB`, `--paper #FBFAF6`,
+  `--ink #211C1A`, `--stone #7C746C`.
+- Tipografía: Libre Caslon Text (títulos, peso 400) + Libre Franklin (cuerpo/UI).
+- Firma visual: marcos de doble filete, monograma circular, numerales romanos,
+  `border-radius: 0` siempre, sombras casi nulas, parallax sutil con
+  `prefers-reduced-motion` respetado.
 
 ## Correo / SMTP (crítico)
 
@@ -111,16 +100,16 @@ los avisos de deprecación en la consola de `next dev` / `next build`.
 
 ## Alcance contratado (guardarraíl)
 
-Incluido: sitio one-page (rediseño Grant Law aceptado en lugar de las 5 páginas
-originales) + formulario funcional + deploy en Vercel + dominio configurado
-+ SEO base + una ronda de ajustes menores (ya consumida por el rediseño v2).
+Incluido: 5 páginas + formulario funcional + deploy en Vercel + dominio configurado
++ SEO base + una ronda de ajustes menores.
 Fuera de alcance (cotizar aparte, avisar al usuario): blog, i18n/inglés, agendamiento
 en línea, analytics, CMS, páginas adicionales.
 
 ## Pendientes antes de entregar
 
-- [ ] Foto real del abogado (hoy: placeholder Unsplash) y datos biográficos reales
-- [ ] Datos de contacto reales (teléfono, correo, oficina)
+- [ ] Reemplazar "Lex & Asociados" por la marca final del cliente
+- [ ] Fotos reales del equipo (hoy: placeholders Unsplash)
+- [ ] Nombres, bios, datos de contacto y cifras reales
 - [ ] `CONTACT_TO` y cuenta SMTP rotadas al Gmail del cliente
-- [ ] Metadata/OG con marca Grant Law + favicon
+- [ ] Metadata/OG con marca final + favicon con monograma
 - [ ] `npm run build` limpio y formulario probado en producción

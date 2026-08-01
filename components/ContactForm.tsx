@@ -12,9 +12,9 @@ const PRACTICE_AREAS = [
 ] as const;
 
 /**
- * Formulario de contacto (`.form` en el mockup). Por ahora es solo
+ * Formulario de contacto (`.form` en el borrador). Por ahora es solo
  * estructura visual: sin `fetch`, estados ni validación (eso llega en la
- * fase de backend, una vez se defina el contrato de `/api/contact`).
+ * Fase 6, una vez `backend` defina el contrato de `/api/contact`).
  */
 export default function ContactForm() {
   return (
@@ -50,13 +50,13 @@ export default function ContactForm() {
       <p className={styles.formNote}>
         El envío de este formulario no crea una relación abogado–cliente.
       </p>
-      {/* TODO (backend): conectar a POST /api/contact con estados de
-          enviando/éxito/error una vez se defina el contrato. */}
-      <button className={`pill ${styles.sendBtn}`} type="button">
+      {/* TODO (Fase 6): conectar a POST /api/contact con estados de
+          enviando/éxito/error una vez backend defina el contrato. */}
+      <button className={`btn btn-solid ${styles.sendBtn}`} type="button">
         Enviar consulta
       </button>
       <div className={styles.formOk}>
-        Su consulta fue enviada. Le responderé dentro de un día hábil. Gracias por su confianza.
+        Su consulta fue enviada. Le responderemos dentro de un día hábil. Gracias por su confianza.
       </div>
     </div>
   );

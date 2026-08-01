@@ -39,7 +39,7 @@ export default function Reveal({ children, className }: RevealProps) {
           }
         });
       },
-      { threshold: 0.08 }
+      { threshold: 0.1 }
     );
 
     observer.observe(el);
