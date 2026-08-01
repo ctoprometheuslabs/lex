@@ -1,9 +1,29 @@
 import type { Metadata } from "next";
+import { Libre_Caslon_Text, Libre_Franklin } from "next/font/google";
 import "./globals.css";
 
+const libreCaslonText = Libre_Caslon_Text({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+  variable: "--serif",
+  display: "swap",
+});
+
+const libreFranklin = Libre_Franklin({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--sans",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Lex & Asociados",
-  description: "TODO (Fase 2.3): metadata definitiva",
+  title: {
+    default: "Lex & Asociados",
+    template: "%s · Lex & Asociados",
+  },
+  description:
+    "Lex & Asociados. Estudio jurídico de excelencia: derecho corporativo, litigios, laboral, inmobiliario y familia.",
 };
 
 export default function RootLayout({
@@ -12,7 +32,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" className={`${libreCaslonText.variable} ${libreFranklin.variable}`}>
       <body>{children}</body>
     </html>
   );
