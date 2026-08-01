@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Áreas de práctica — Grant Law</title>
+<meta name="description" content="Áreas de práctica de Grant Law: derecho corporativo, litigios, laboral, inmobiliario y familia.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#F7F6F2;
+    --white:#FFFFFF;
+    --ink:#101720;
+    --ink-soft:#3E4650;
+    --muted:#7E7A70;
+    --hair:#E5E1D8;
+    --bronze:#9A7B45;
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Inter',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:var(--sans);background:var(--ivory);color:var(--ink);
+    font-size:15.5px;line-height:1.75;-webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--ink);color:var(--ivory)}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+
+  .wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+  .label{
+    font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+    font-weight:600;color:var(--bronze);
+  }
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.12}
+
+  .reveal{opacity:0;transform:translateY(12px);transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+  }
+
+  /* ---------- Topbar ---------- */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(247,246,242,.94);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--hair);
+  }
+  .topbar-inner{
+    max-width:1200px;margin:0 auto;padding:0 48px;height:88px;
+    display:flex;align-items:center;justify-content:space-between;gap:32px;
+  }
+  .wordmark{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+  nav.main{display:flex;align-items:center;gap:40px}
+  nav.main a{
+    font-size:11.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-soft);padding-bottom:3px;border-bottom:1px solid transparent;
+    transition:color .25s,border-color .25s;
+  }
+  nav.main a:hover{color:var(--ink);border-color:var(--bronze)}
+  nav.main a.active{color:var(--ink);border-color:var(--bronze)}
+  .btn{
+    display:inline-block;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+    font-weight:600;padding:15px 32px;cursor:pointer;
+    border:1px solid var(--ink);color:var(--ink);background:transparent;
+    transition:background .3s,color .3s;font-family:var(--sans);
+  }
+  .btn:hover{background:var(--ink);color:var(--ivory)}
+  .btn.solid{background:var(--ink);color:var(--ivory)}
+  .btn.solid:hover{background:#000}
+  .btn.light{border-color:var(--ivory);color:var(--ivory)}
+  .btn.light:hover{background:var(--ivory);color:var(--ink)}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+  .menu-toggle span{display:block;width:22px;height:1.5px;background:var(--ink);margin:6px 0}
+
+  /* ---------- Cabecera de página ---------- */
+  .page-head{padding:210px 0 90px;text-align:center}
+  .page-head .label{display:block;margin-bottom:22px}
+  .page-head h1{font-size:clamp(44px,5.4vw,76px)}
+  .page-head .lede{max-width:520px;margin:26px auto 0;color:var(--muted)}
+  .page-head .rule{width:120px;height:1px;background:var(--bronze);margin:44px auto 0}
+
+  /* ---------- Áreas ---------- */
+  section{padding:90px 0 130px}
+  .area{
+    display:grid;grid-template-columns:120px 1fr auto;gap:44px;align-items:baseline;
+    padding:52px 0;border-top:1px solid var(--hair);
+  }
+  .area:last-of-type{border-bottom:1px solid var(--hair)}
+  .area-num{
+    font-family:var(--serif);font-style:italic;font-size:20px;color:var(--bronze);
+  }
+  .area h2{font-size:clamp(26px,3vw,38px);margin-bottom:12px;transition:color .3s}
+  .area:hover h2{color:var(--bronze)}
+  .area p{max-width:620px;color:var(--muted);font-size:14.5px}
+  .area .go{
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+    white-space:nowrap;display:inline-flex;align-items:center;gap:8px;
+    opacity:0;transform:translateX(-6px);transition:.3s;
+  }
+  .area .go::after{content:'→'}
+  .area:hover .go{opacity:1;transform:none}
+
+  /* ---------- CTA ---------- */
+  .cta{background:var(--ink);color:var(--ivory);text-align:center;padding:110px 0}
+  .cta .label{color:var(--bronze)}
+  .cta h2{font-size:clamp(30px,3.6vw,46px);max-width:680px;margin:18px auto 14px;color:var(--ivory)}
+  .cta p{color:rgba(247,246,242,.65);max-width:480px;margin:0 auto 42px;font-size:15px}
+
+  /* ---------- Footer ---------- */
+  footer.site{padding:52px 0;border-top:1px solid var(--hair)}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+  .foot .wordmark{font-size:15px}
+  .foot-links{display:flex;gap:28px}
+  .foot-links a{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .foot-links a:hover{color:var(--ink)}
+  .foot-legal{margin-top:16px;font-size:11.5px;color:#A8A399}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:960px){
+    .wrap,.topbar-inner{padding-left:28px;padding-right:28px}
+    .area{grid-template-columns:64px 1fr;gap:24px}
+    .area .go{display:none}
+  }
+  @media (max-width:680px){
+    nav.main{
+      position:fixed;top:88px;right:0;left:0;background:var(--ivory);
+      flex-direction:column;gap:0;padding:8px 0 20px;display:none;
+      border-bottom:1px solid var(--hair);
+    }
+    nav.main.open{display:flex}
+    nav.main a{padding:15px 28px;width:100%;border-bottom:none}
+    .menu-toggle{display:block}
+    .topbar .btn{display:none}
+    .page-head{padding:170px 0 60px}
+    section{padding:60px 0 90px}
+    .area{grid-template-columns:1fr;gap:10px;padding:38px 0}
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="wordmark" href="version-c-home.html">Grant Law</a>
+    <nav class="main" id="nav">
+      <a href="version-c-home.html">Inicio</a>
+      <a href="#">About</a>
+      <a href="version-c-practice-areas.html" class="active">Practice Areas</a>
+      <a href="#">Experience</a>
+      <a href="#">Contact</a>
+    </nav>
+    <a href="#" class="btn">Agendar consulta</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+
+  <div class="page-head">
+    <div class="wrap">
+      <span class="label reveal">Practice Areas</span>
+      <h1 class="reveal">Áreas de práctica</h1>
+      <p class="lede reveal">Cinco materias, un mismo estándar: análisis riguroso, estrategia a la medida y comunicación directa.</p>
+      <div class="rule reveal"></div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="area reveal">
+        <span class="area-num">I</span>
+        <div>
+          <h2>Derecho corporativo</h2>
+          <p>Constitución de sociedades, pactos de accionistas, fusiones y adquisiciones, gobierno corporativo, financiamientos y asesoría permanente a empresas y directorios.</p>
+        </div>
+        <span class="go">Consultar</span>
+      </div>
+      <div class="area reveal">
+        <span class="area-num">II</span>
+        <div>
+          <h2>Litigios civiles y comerciales</h2>
+          <p>Representación estratégica en juicios civiles, disputas contractuales, responsabilidad civil, cobranzas complejas y arbitrajes nacionales e internacionales.</p>
+        </div>
+        <span class="go">Consultar</span>
+      </div>
+      <div class="area reveal">
+        <span class="area-num">III</span>
+        <div>
+          <h2>Derecho laboral</h2>
+          <p>Defensa de empleadores y ejecutivos: despidos y desvinculaciones, tutela de derechos, negociación colectiva, auditorías y programas de cumplimiento laboral.</p>
+        </div>
+        <span class="go">Consultar</span>
+      </div>
+      <div class="area reveal">
+        <span class="area-num">IV</span>
+        <div>
+          <h2>Derecho inmobiliario y contratos</h2>
+          <p>Estudios de títulos, compraventas, promesas, arriendos comerciales, desarrollo de proyectos y estructuración de operaciones inmobiliarias.</p>
+        </div>
+        <span class="go">Consultar</span>
+      </div>
+      <div class="area reveal">
+        <span class="area-num">V</span>
+        <div>
+          <h2>Familia y sucesiones</h2>
+          <p>Planificación patrimonial y sucesoria, testamentos, posesiones efectivas, divorcios y acuerdos, con foco en proteger su patrimonio y su familia.</p>
+        </div>
+        <span class="go">Consultar</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta">
+    <div class="wrap reveal">
+      <span class="label">Contacto</span>
+      <h2>¿No está seguro de qué área corresponde a su caso?</h2>
+      <p>Descríbame su situación y yo la encamino. Esa es mi labor.</p>
+      <a href="#" class="btn light">Agendar una consulta</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <span class="wordmark">Grant Law</span>
+      <div class="foot-links">
+        <a href="#">About</a>
+        <a href="version-c-practice-areas.html">Practice Areas</a>
+        <a href="#">Experience</a>
+        <a href="#">Contact</a>
+      </div>
+      <span>© 2026 Grant Law. Todos los derechos reservados.</span>
+    </div>
+    <p class="foot-legal">El contenido de este sitio es informativo y no constituye asesoría legal.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('menuToggle').addEventListener('click', () =>
+    document.getElementById('nav').classList.toggle('open'));
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    }, {threshold:0.08});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  }
+</script>
+</body>
+</html>

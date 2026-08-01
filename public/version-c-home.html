@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grant Law — Abogado</title>
+<meta name="description" content="Grant Law. Abogado. Asesoría legal de alto nivel en derecho corporativo, litigios y contratos.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#F7F6F2;
+    --white:#FFFFFF;
+    --ink:#101720;
+    --ink-soft:#3E4650;
+    --muted:#7E7A70;
+    --hair:#E5E1D8;
+    --bronze:#9A7B45;
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --sans:'Inter',system-ui,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:var(--sans);background:var(--ivory);color:var(--ink);
+    font-size:15.5px;line-height:1.75;-webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--ink);color:var(--ivory)}
+  img{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+
+  .wrap{max-width:1200px;margin:0 auto;padding:0 48px}
+
+  .label{
+    font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+    font-weight:600;color:var(--bronze);
+  }
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.12;letter-spacing:0}
+
+  .reveal{opacity:0;transform:translateY(12px);transition:opacity .9s cubic-bezier(.2,.6,.2,1),transform .9s cubic-bezier(.2,.6,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+  }
+
+  /* ---------- Intro (estilo ODESA) ---------- */
+  .intro{
+    position:fixed;inset:0;z-index:100;background:var(--ivory);
+    display:flex;align-items:center;justify-content:center;
+    transition:transform 1s cubic-bezier(.76,0,.24,1);
+  }
+  .intro.lift{transform:translateY(-100%)}
+  .intro-inner{text-align:center}
+  .intro .label{display:block;margin-bottom:20px;opacity:0;animation:introFade .8s ease .2s forwards}
+  .intro h1{
+    font-size:clamp(52px,9vw,120px);font-weight:500;letter-spacing:.01em;
+    opacity:0;transform:translateY(16px);
+    animation:introRise 1s cubic-bezier(.2,.6,.2,1) .35s forwards;
+  }
+  .intro .rule{
+    width:0;height:1px;background:var(--bronze);margin:26px auto 0;
+    animation:introRule .9s cubic-bezier(.2,.6,.2,1) .75s forwards;
+  }
+  @keyframes introFade{to{opacity:1}}
+  @keyframes introRise{to{opacity:1;transform:none}}
+  @keyframes introRule{to{width:120px}}
+  @media (prefers-reduced-motion:reduce){
+    .intro{display:none}
+  }
+
+  /* ---------- Topbar ---------- */
+  .topbar{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:transparent;border-bottom:1px solid transparent;
+    transition:background .35s,border-color .35s;
+  }
+  .topbar.scrolled{background:rgba(247,246,242,.94);backdrop-filter:blur(8px);border-bottom-color:var(--hair)}
+  .topbar-inner{
+    max-width:1200px;margin:0 auto;padding:0 48px;height:88px;
+    display:flex;align-items:center;justify-content:space-between;gap:32px;
+  }
+  .wordmark{font-family:var(--serif);font-size:19px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+  nav.main{display:flex;align-items:center;gap:40px}
+  nav.main a{
+    font-size:11.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--ink-soft);padding-bottom:3px;border-bottom:1px solid transparent;
+    transition:color .25s,border-color .25s;
+  }
+  nav.main a:hover{color:var(--ink);border-color:var(--bronze)}
+  nav.main a.active{color:var(--ink);border-color:var(--bronze)}
+  .btn{
+    display:inline-block;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;
+    font-weight:600;padding:15px 32px;cursor:pointer;
+    border:1px solid var(--ink);color:var(--ink);background:transparent;
+    transition:background .3s,color .3s;font-family:var(--sans);
+  }
+  .btn:hover{background:var(--ink);color:var(--ivory)}
+  .btn.solid{background:var(--ink);color:var(--ivory)}
+  .btn.solid:hover{background:#000}
+  .menu-toggle{display:none;background:none;border:none;cursor:pointer;padding:8px}
+  .menu-toggle span{display:block;width:22px;height:1.5px;background:var(--ink);margin:6px 0}
+
+  /* ---------- Hero ---------- */
+  .hero{min-height:100vh;display:flex;align-items:center;padding:150px 0 90px}
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:90px;align-items:center}
+  .hero .label{display:block;margin-bottom:28px}
+  .hero h1{font-size:clamp(54px,6.6vw,96px);font-weight:500}
+  .hero .tag{
+    font-family:var(--serif);font-style:italic;font-size:clamp(20px,2vw,26px);
+    color:var(--ink-soft);margin:18px 0 26px;font-weight:400;
+  }
+  .hero p.lead{max-width:460px;color:var(--muted);margin-bottom:40px}
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap}
+  .hero-photo{position:relative}
+  .hero-photo img{
+    width:100%;aspect-ratio:4/5;object-fit:cover;
+    filter:grayscale(.4) contrast(1.02);
+  }
+
+  /* ---------- Accesos (tarjetas) ---------- */
+  .explore{padding:120px 0;background:var(--white);border-top:1px solid var(--hair)}
+  .explore-head{text-align:center;margin-bottom:70px}
+  .explore-head h2{font-size:clamp(30px,3.4vw,44px);margin-top:16px}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair)}
+  .card{
+    background:var(--white);padding:52px 36px 46px;
+    display:flex;flex-direction:column;gap:14px;min-height:280px;
+    transition:background .35s;
+  }
+  .card:hover{background:var(--ivory)}
+  .card .label{font-size:10.5px}
+  .card h3{font-size:26px;font-weight:500}
+  .card p{font-size:13.5px;color:var(--muted);flex:1}
+  .card .go{
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;
+    color:var(--ink);display:inline-flex;align-items:center;gap:8px;
+  }
+  .card .go::after{content:'→';transition:transform .3s}
+  .card:hover .go::after{transform:translateX(6px)}
+
+  /* ---------- Footer ---------- */
+  footer.site{padding:52px 0;border-top:1px solid var(--hair)}
+  .foot{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;font-size:12.5px;color:var(--muted)}
+  .foot .wordmark{font-size:15px}
+  .foot-links{display:flex;gap:28px}
+  .foot-links a{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .foot-links a:hover{color:var(--ink)}
+  .foot-legal{margin-top:16px;font-size:11.5px;color:#A8A399}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:960px){
+    .wrap,.topbar-inner{padding-left:28px;padding-right:28px}
+    .hero{padding-top:130px;min-height:auto}
+    .hero-grid{grid-template-columns:1fr;gap:56px}
+    .hero-photo{max-width:440px}
+    .cards{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:680px){
+    nav.main{
+      position:fixed;top:88px;right:0;left:0;background:var(--ivory);
+      flex-direction:column;gap:0;padding:8px 0 20px;display:none;
+      border-bottom:1px solid var(--hair);
+    }
+    nav.main.open{display:flex}
+    nav.main a{padding:15px 28px;width:100%;border-bottom:none}
+    .menu-toggle{display:block}
+    .topbar .btn{display:none}
+    .cards{grid-template-columns:1fr}
+    .card{min-height:auto}
+    .explore{padding:90px 0}
+  }
+</style>
+</head>
+<body>
+
+<!-- Intro tipo ODESA: nombre en grande, luego se desliza hacia arriba -->
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="intro-inner">
+    <span class="label">Abogado</span>
+    <h1>Grant Law</h1>
+    <div class="rule"></div>
+  </div>
+</div>
+
+<header class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a class="wordmark" href="version-c-home.html">Grant Law</a>
+    <nav class="main" id="nav">
+      <a href="version-c-home.html" class="active">Inicio</a>
+      <a href="#">About</a>
+      <a href="version-c-practice-areas.html">Practice Areas</a>
+      <a href="#">Experience</a>
+      <a href="#">Contact</a>
+    </nav>
+    <a href="#" class="btn">Agendar consulta</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="label reveal">Abogado · Derecho corporativo y litigios</span>
+        <h1 class="reveal d1">Grant Law</h1>
+        <p class="tag reveal d2">Asesoría legal de alto nivel, con atención personal.</p>
+        <p class="lead reveal d2">Represento a empresas y personas en asuntos donde la estrategia jurídica define el resultado. Cada caso recibe mi atención directa, de principio a fin.</p>
+        <div class="hero-ctas reveal d3">
+          <a href="#" class="btn solid">Agendar una consulta</a>
+          <a href="version-c-practice-areas.html" class="btn">Áreas de práctica</a>
+        </div>
+      </div>
+      <div class="hero-photo reveal d2">
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=1000&q=80" alt="Retrato profesional del abogado" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACCESOS ============ -->
+  <section class="explore">
+    <div class="wrap">
+      <div class="explore-head reveal">
+        <span class="label">Conozca la práctica</span>
+        <h2>Todo lo que necesita saber, a un clic.</h2>
+      </div>
+      <div class="cards reveal d1">
+        <a class="card" href="#">
+          <span class="label">About</span>
+          <h3>Perfil</h3>
+          <p>Quince años de ejercicio en asesoría corporativa y litigios de alta complejidad. Conozca mi trayectoria y mi forma de trabajar.</p>
+          <span class="go">Ver perfil</span>
+        </a>
+        <a class="card" href="version-c-practice-areas.html">
+          <span class="label">Practice Areas</span>
+          <h3>Áreas de práctica</h3>
+          <p>Derecho corporativo, litigios, laboral, inmobiliario y familia. Cinco áreas con un mismo estándar de excelencia.</p>
+          <span class="go">Ver áreas</span>
+        </a>
+        <a class="card" href="#">
+          <span class="label">Experience</span>
+          <h3>Trayectoria</h3>
+          <p>Operaciones, juicios y asesorías representativas que demuestran resultados concretos, con total reserva de identidades.</p>
+          <span class="go">Ver trayectoria</span>
+        </a>
+        <a class="card" href="#">
+          <span class="label">Contact</span>
+          <h3>Contacto</h3>
+          <p>Agende una consulta confidencial. Le respondo personalmente dentro de un día hábil.</p>
+          <span class="go">Escribir ahora</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot">
+      <span class="wordmark">Grant Law</span>
+      <div class="foot-links">
+        <a href="#">About</a>
+        <a href="version-c-practice-areas.html">Practice Areas</a>
+        <a href="#">Experience</a>
+        <a href="#">Contact</a>
+      </div>
+      <span>© 2026 Grant Law. Todos los derechos reservados.</span>
+    </div>
+    <p class="foot-legal">El contenido de este sitio es informativo y no constituye asesoría legal.</p>
+  </div>
+</footer>
+
+<script>
+  /* Intro: se muestra una vez por sesión; con reduced-motion no existe (CSS) */
+  const intro = document.getElementById('intro');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion || sessionStorage.getItem('introSeen')) {
+    intro.remove();
+  } else {
+    sessionStorage.setItem('introSeen', '1');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+      intro.classList.add('lift');
+      document.body.style.overflow = '';
+      setTimeout(() => intro.remove(), 1100);
+    }, 1900);
+  }
+
+  const bar = document.getElementById('topbar');
+  window.addEventListener('scroll', () => bar.classList.toggle('scrolled', window.scrollY > 30), {passive:true});
+
+  document.getElementById('menuToggle').addEventListener('click', () =>
+    document.getElementById('nav').classList.toggle('open'));
+
+  if (reduceMotion) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    }, {threshold:0.08});
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  }
+</script>
+</body>
+</html>
