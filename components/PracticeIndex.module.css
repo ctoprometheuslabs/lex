@@ -1,0 +1,60 @@
+.index {
+  border-top: 1px solid var(--line);
+}
+
+.indexRow {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 30px;
+  align-items: baseline;
+  padding: 30px 10px;
+  border-bottom: 1px solid var(--line);
+  text-decoration: none;
+  color: var(--ink);
+  transition: background .25s;
+}
+
+.indexRow:hover {
+  background: rgba(63, 34, 41, .04);
+}
+
+.indexNum {
+  font-family: var(--serif);
+  font-size: 15px;
+  color: var(--brass);
+  letter-spacing: .1em;
+}
+
+.indexBody h3 {
+  font-size: 22px;
+  margin-bottom: 6px;
+  transition: color .25s;
+}
+
+.indexRow:hover .indexBody h3 {
+  color: var(--rosewood);
+}
+
+.indexBody p {
+  font-size: 14.5px;
+  color: var(--stone);
+  max-width: 640px;
+  font-weight: 300;
+}
+
+.indexGo {
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--rosewood);
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: .25s;
+}
+
+.indexRow:hover .indexGo {
+  opacity: 1;
+  transform: none;
+}

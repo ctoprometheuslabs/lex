@@ -1,0 +1,147 @@
+.topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  background: rgba(44, 23, 29, .55);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(195, 166, 113, .25);
+  transition: background .35s;
+}
+
+.topbar.solid {
+  background: rgba(44, 23, 29, .97);
+}
+
+.topbarInner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 40px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: var(--ivory);
+}
+
+.monogram {
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--brass-soft);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 15px;
+  color: var(--brass-soft);
+  position: relative;
+  letter-spacing: .05em;
+}
+
+.monogram::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border: 1px solid rgba(195, 166, 113, .4);
+  border-radius: 50%;
+}
+
+.brandName {
+  font-family: var(--serif);
+  font-size: 19px;
+  letter-spacing: .04em;
+}
+
+.brandName small {
+  display: block;
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: .34em;
+  text-transform: uppercase;
+  color: rgba(245, 242, 235, .55);
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+.main {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.main a {
+  font-size: 12.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(245, 242, 235, .85);
+  text-decoration: none;
+  font-weight: 500;
+  padding-bottom: 4px;
+  border-bottom: 1px solid transparent;
+  transition: color .25s, border-color .25s;
+}
+
+.main a:hover {
+  color: #fff;
+  border-color: var(--brass-soft);
+}
+
+.main a.active {
+  color: var(--brass-soft);
+  border-color: var(--brass-soft);
+}
+
+.menuToggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.menuToggle span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--ivory);
+  margin: 6px 0;
+}
+
+/* ---------- Menú móvil (breakpoint pendiente de Fase 2) ---------- */
+@media (max-width: 820px) {
+  .main {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    left: 0;
+    background: var(--rosewood-deep);
+    flex-direction: column;
+    gap: 0;
+    padding: 10px 0 24px;
+    display: none;
+    border-bottom: 1px solid rgba(195, 166, 113, .25);
+  }
+
+  .main.open {
+    display: flex;
+  }
+
+  .main a {
+    padding: 14px 24px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .menuToggle {
+    display: block;
+  }
+}
