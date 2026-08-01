@@ -57,7 +57,6 @@ export default function Hero({
           </div>
         </div>
       </div>
-      <span className={styles.scrollHint}>Desplazar ↓</span>
     </section>
   );
 }
