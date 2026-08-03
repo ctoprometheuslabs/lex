@@ -1,19 +1,14 @@
 import type { ReactNode } from "react";
 import type { StaticImageData } from "next/image";
-import Image from "next/image";
 import Link from "next/link";
 import ParallaxLayer from "./ParallaxLayer";
+import IntroTrailer from "./IntroTrailer";
 import styles from "./Hero.module.css";
 
 type HeroCta = {
   label: string;
   href: string;
   variant: "gold" | "light";
-};
-
-type HeroPortrait = {
-  src: StaticImageData;
-  alt: string;
 };
 
 type HeroProps = {
@@ -24,28 +19,35 @@ type HeroProps = {
   title: ReactNode;
   lead: string;
   ctas: HeroCta[];
-  portrait: HeroPortrait;
+  tags: string[];
+  caption: string;
+  /** Retrato para la 1.ª diapositiva del Intro Trailer; si se omite, no se monta la intro. */
+  introPhoto?: StaticImageData;
 };
 
 /**
- * Sección `.hero` de la portada: fondo full-bleed con parallax (vía
- * `ParallaxLayer`, mismo mecanismo que `ParallaxBanner`/`PageHead`) sobre el
- * que se despliega un layout de dos columnas — mensaje principal a la
- * izquierda, retrato con marco de doble filete a la derecha. En móvil se
- * apila con el retrato primero.
+ * Hero de la portada: fotografía full-bleed con parallax sutil (oficina que
+ * se abre a un horizonte urbano nocturno) y un scrim que va de azul marino
+ * opaco a la izquierda —donde vive el mensaje— a transparente a la derecha,
+ * dejando la imagen protagonista. Aloja al `IntroTrailer`, la secuencia
+ * cinemática que precede a esta sección en la primera visita de la sesión.
  */
 export default function Hero({
   image,
   imageAlt = "",
-  speed = 0.25,
+  speed = 0.18,
   kicker,
   title,
   lead,
   ctas,
-  portrait,
+  tags,
+  caption,
+  introPhoto,
 }: HeroProps) {
   return (
     <section className={styles.hero}>
+      {introPhoto ? <IntroTrailer photo={introPhoto} /> : null}
+
       <ParallaxLayer
         image={image}
         imageAlt={imageAlt}
@@ -54,34 +56,26 @@ export default function Hero({
         sizes="100vw"
         priority
       />
+
       <div className={styles.heroInner}>
-        <div className={styles.heroGrid}>
-          <div className={styles.heroText}>
-            <p className={styles.kicker}>{kicker}</p>
-            <h1>{title}</h1>
-            <p className={styles.lead}>{lead}</p>
-            <div className={styles.heroCtas}>
-              {ctas.map((cta) => (
-                <Link key={cta.label} href={cta.href} className={`btn btn-${cta.variant}`}>
-                  {cta.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-          <div className={styles.heroPortrait}>
-            <div className={styles.portraitFrame}>
-              <Image
-                src={portrait.src}
-                alt={portrait.alt}
-                fill
-                sizes="(max-width: 960px) 70vw, 400px"
-                style={{ objectFit: "cover" }}
-                priority
-              />
-            </div>
-          </div>
+        <p className={styles.kicker}>{kicker}</p>
+        <h1>{title}</h1>
+        <p className={styles.lead}>{lead}</p>
+        <div className={styles.heroCtas}>
+          {ctas.map((cta) => (
+            <Link key={cta.label} href={cta.href} className={`btn btn-${cta.variant}`}>
+              {cta.label}
+            </Link>
+          ))}
         </div>
+        <ul className={styles.tags}>
+          {tags.map((tag) => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
       </div>
+
+      <p className={styles.caption}>{caption}</p>
     </section>
   );
 }
