@@ -1,0 +1,42 @@
+.monogram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--mg-size, 104px) * .1);
+  width: var(--mg-size, 104px);
+  height: var(--mg-size, 104px);
+  border-radius: 50%;
+  border: 1px solid rgba(216, 192, 138, .55);
+  position: relative;
+  font-family: var(--serif);
+  background: radial-gradient(circle at 50% 35%, rgba(22, 41, 75, .9), rgba(10, 24, 48, .95));
+  box-shadow: 0 0 90px rgba(185, 146, 79, .16);
+}
+
+.monogram::after {
+  content: '';
+  position: absolute;
+  inset: calc(var(--mg-size, 104px) * .05);
+  border-radius: 50%;
+  border: 1px solid rgba(216, 192, 138, .22);
+}
+
+.g,
+.l {
+  font-size: calc(var(--mg-size, 104px) * .33);
+  line-height: 1;
+}
+
+.g {
+  color: var(--gold-soft);
+}
+
+.l {
+  color: var(--ivory);
+}
+
+.bar {
+  width: 1px;
+  height: calc(var(--mg-size, 104px) * .42);
+  background: rgba(216, 192, 138, .5);
+}

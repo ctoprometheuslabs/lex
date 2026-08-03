@@ -1,0 +1,106 @@
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9990;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(ellipse 120% 90% at 50% 40%, #14264A 0%, var(--navy-ink) 52%, #071120 100%);
+  opacity: 1;
+  transition: opacity .75s ease;
+  /* Resguardo sin JS: la pantalla se oculta sola pasados 5s. */
+  animation: autoHide 1ms linear 5s forwards;
+}
+
+.fade {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes autoHide {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 24px;
+}
+
+.mark {
+  animation: markIn 1.1s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes markIn {
+  from {
+    opacity: 0;
+    transform: scale(.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.wordmark {
+  margin-top: 36px;
+  font-family: var(--sans);
+  font-weight: 400;
+  font-size: 21px;
+  letter-spacing: .48em;
+  text-indent: .48em; /* compensa el tracking para centrar ópticamente */
+  text-transform: uppercase;
+  color: var(--ivory);
+  animation: trackIn 1.3s .2s cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes trackIn {
+  from {
+    opacity: 0;
+    letter-spacing: .3em;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    letter-spacing: .48em;
+    transform: none;
+  }
+}
+
+.tagline {
+  margin-top: 16px;
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: .5em;
+  text-indent: .5em;
+  text-transform: uppercase;
+  color: var(--champagne);
+  animation: taglineIn 1s .6s ease both;
+}
+
+@keyframes taglineIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: .8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash {
+    transition-duration: .2s;
+  }
+  .mark,
+  .wordmark,
+  .tagline {
+    animation: none;
+  }
+  .tagline {
+    opacity: .8;
+  }
+}

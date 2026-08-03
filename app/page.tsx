@@ -34,13 +34,13 @@ export default function Home() {
   return (
     <main>
       <Hero
-        image="https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1800&q=80"
-        imageAlt="Interior de oficina jurídica"
-        speed={0.25}
+        image="https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=1800&q=80"
+        imageAlt="Distrito financiero al anochecer"
+        speed={0.18}
         kicker="Grant Law · Abogado"
         title={
           <>
-            Asesoría legal con criterio, rigor y <em>resultados</em>.
+            Estrategia legal. Resultados <em>de negocio</em>.
           </>
         }
         lead="Atiendo personalmente a empresas y personas en asuntos donde la estrategia jurídica define el resultado. Excelencia técnica, trato directo y confidencialidad absoluta."
@@ -48,7 +48,9 @@ export default function Home() {
           { label: "Agendar una consulta", href: "/contact", variant: "gold" },
           { label: "Áreas de práctica", href: "/practice-areas", variant: "light" },
         ]}
-        portrait={{ src: photo, alt: "Grant, retrato profesional" }}
+        tags={["Empresas", "Inmuebles", "Inversión"]}
+        caption="Guía. Estrategia. Resultados."
+        introPhoto={photo}
       />
 
       <section>

@@ -1,11 +1,14 @@
 :root {
   --navy: #16294B;
   --navy-deep: #0D1B36;
+  --navy-ink: #0A1830;
   --ink: #1A1F2B;
   --ivory: #F1EFE9;
   --paper: #FAF9F5;
   --gold: #B9924F;
   --gold-soft: #CBA96A;
+  --gold-deep: #8F6E37;
+  --champagne: #D8C08A;
   --stone: #6E7482;
   --line: rgba(22, 41, 75, .16);
 }

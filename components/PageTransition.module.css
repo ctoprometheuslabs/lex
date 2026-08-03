@@ -1,0 +1,113 @@
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 9980; /* bajo el splash (9990), sobre el resto del sitio */
+  background:
+    linear-gradient(180deg, var(--navy-ink) 0%, var(--navy-deep) 55%, var(--navy) 100%);
+  transform: translateY(100%);
+  transition: transform .5s cubic-bezier(.65, 0, .35, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cover,
+.held {
+  transform: translateY(0);
+}
+
+.reveal {
+  transform: translateY(-100%);
+  transition: transform .62s cubic-bezier(.6, 0, .3, 1);
+}
+
+/* Franja dorada que recorre la cortina mientras sube, distinta del logo
+   centrado y estático del splash de primera carga. */
+.sweep {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  top: 60%;
+  background: linear-gradient(90deg, transparent, var(--gold-soft) 45%, var(--champagne) 55%, transparent);
+  opacity: 0;
+}
+
+.cover .sweep {
+  animation: sweepRise .5s cubic-bezier(.65, 0, .35, 1) both;
+}
+
+.reveal .sweep {
+  animation: sweepRise .62s cubic-bezier(.6, 0, .3, 1) reverse both;
+}
+
+@keyframes sweepRise {
+  from {
+    top: 100%;
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  to {
+    top: -2px;
+    opacity: 0;
+  }
+}
+
+.center {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+.held .center {
+  opacity: 1;
+  transform: none;
+  transition-delay: .1s;
+}
+
+.mark {
+  font-family: var(--serif);
+  font-size: 15px;
+  letter-spacing: .3em;
+  color: var(--gold-soft);
+}
+
+.line {
+  width: 30px;
+  height: 1px;
+  background: rgba(216, 192, 138, .4);
+  overflow: hidden;
+  position: relative;
+}
+
+.line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--gold-soft);
+  transform: translateX(-100%);
+}
+
+.held .line::after {
+  animation: lineFill .75s .1s cubic-bezier(.4, 0, .2, 1) forwards;
+}
+
+@keyframes lineFill {
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curtain {
+    display: none;
+  }
+}
