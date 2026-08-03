@@ -12,6 +12,26 @@ const MIN_HOLD_MS = 320;
 const REVEAL_MS = 620;
 const FALLBACK_MS = 3000;
 
+// Mismas etiquetas que el nav del Topbar; se muestran dentro de la cortina
+// para anunciar hacia dónde se dirige la navegación.
+const PAGE_NAMES: Record<string, string> = {
+  "/": "Home",
+  "/about": "About",
+  "/practice-areas": "Practice Areas",
+  "/experience": "Experience",
+  "/contact": "Contact",
+};
+
+function labelFor(pathname: string): string {
+  if (PAGE_NAMES[pathname]) return PAGE_NAMES[pathname];
+  const last = pathname.split("/").filter(Boolean).pop();
+  if (!last) return "Home";
+  return last
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 /**
  * Cortina de transición entre páginas: distinta de `SplashScreen` (que solo
  * corre en la primera carga). Intercepta clics en enlaces internos, cubre la
@@ -24,6 +44,7 @@ export default function PageTransition() {
   const pathname = usePathname();
   const router = useRouter();
   const [phase, setPhase] = useState<Phase>("idle");
+  const [destination, setDestination] = useState("");
 
   const timers = useRef<number[]>([]);
   const pendingHref = useRef<string | null>(null);
@@ -95,6 +116,7 @@ export default function PageTransition() {
 
       pendingHref.current = url.pathname + url.search + url.hash;
       targetPathname.current = url.pathname;
+      setDestination(labelFor(url.pathname));
 
       lockScroll();
       lockedRef.current = true;
@@ -121,38 +143,27 @@ export default function PageTransition() {
 
     document.addEventListener("click", onClick, true);
     return () => document.removeEventListener("click", onClick, true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, router]);
-
-  useEffect(() => {
-    if (phase === "reveal") {
-      const t = window.setTimeout(() => {
-        setPhase("idle");
-        if (lockedRef.current) {
-          lockedRef.current = false;
-          unlockScroll();
-        }
-      }, REVEAL_MS);
-      return () => clearTimeout(t);
-    }
-  }, [phase]);
 
   useEffect(() => clearTimers, []);
 
-  if (phase === "idle") return null;
-
+  // Se monta una sola vez y permanece siempre en el árbol (en reposo, fuera
+  // de pantalla vía transform) para que el primer clic anime igual que los
+  // siguientes: si se desmontara en "idle", el próximo montaje aplicaría la
+  // clase "cover" desde el instante de inserción y el navegador no tendría
+  // un valor previo desde el cual transicionar (la cortina "aparecería" de
+  // golpe en vez de deslizarse).
   const stateClass =
-    phase === "cover"
-      ? styles.cover
-      : phase === "held"
-        ? styles.held
-        : styles.reveal;
+    phase === "cover" ? styles.cover : phase === "held" ? styles.held : phase === "reveal" ? styles.reveal : "";
 
   return (
     <div className={`${styles.curtain} ${stateClass}`} aria-hidden="true">
       <div className={styles.sweep} />
       <div className={styles.center}>
-        <span className={styles.mark}>G|L</span>
+        <span className={styles.mark}>
+          G<span className={styles.markBar} />L
+        </span>
+        <span className={styles.pageName}>{destination}</span>
         <span className={styles.line} />
       </div>
     </div>
