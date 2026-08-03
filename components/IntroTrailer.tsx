@@ -45,6 +45,10 @@ export default function IntroTrailer({ photo }: IntroTrailerProps) {
     }
     if (seen) return;
 
+    // Decisión que solo puede tomarse en el cliente (matchMedia/sessionStorage
+    // no existen en el render del servidor): activar la intro tras montar es
+    // el propio propósito de este efecto, no un derivado de props/estado.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setActive(true);
     lockScroll();
     lockedRef.current = true;
