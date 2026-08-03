@@ -61,23 +61,56 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity .35s ease, transform .35s ease;
+  gap: 22px;
 }
 
-.held .center {
+.mark,
+.pageName,
+.line {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+.held .mark {
   opacity: 1;
   transform: none;
-  transition-delay: .1s;
+}
+
+.held .pageName {
+  opacity: 1;
+  transform: none;
+  transition-delay: .08s;
+}
+
+.held .line {
+  opacity: 1;
+  transform: none;
+  transition-delay: .16s;
 }
 
 .mark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--serif);
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: .3em;
   color: var(--gold-soft);
+}
+
+.markBar {
+  width: 1px;
+  height: 12px;
+  background: rgba(216, 192, 138, .5);
+}
+
+.pageName {
+  font-family: var(--serif);
+  font-size: clamp(24px, 3.4vw, 34px);
+  letter-spacing: .04em;
+  color: var(--ivory);
+  min-height: 1.2em;
 }
 
 .line {
@@ -97,7 +130,7 @@
 }
 
 .held .line::after {
-  animation: lineFill .75s .1s cubic-bezier(.4, 0, .2, 1) forwards;
+  animation: lineFill .75s .3s cubic-bezier(.4, 0, .2, 1) forwards;
 }
 
 @keyframes lineFill {
