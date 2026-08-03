@@ -1,16 +1,19 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { lockScroll, unlockScroll } from "./scrollLock";
 import styles from "./PageTransition.module.css";
 
 type Phase = "idle" | "cover" | "held" | "reveal";
 
-const COVER_MS = 480;
-const MIN_HOLD_MS = 320;
-const REVEAL_MS = 620;
-const FALLBACK_MS = 3000;
+const COVER_MS = 550;
+// Tiempo mínimo ya cubierta antes de poder revelar, independiente de cuán
+// rápido responda la navegación (rutas precargadas pueden resolver en
+// pocos ms). Sin este mínimo el título apenas alcanza a asomar.
+const MIN_HOLD_MS = 1150;
+const REVEAL_MS = 680;
+const FALLBACK_MS = 4000;
 
 // Mismas etiquetas que el nav del Topbar; se muestran dentro de la cortina
 // para anunciar hacia dónde se dirige la navegación.
@@ -50,6 +53,9 @@ export default function PageTransition() {
   const pendingHref = useRef<string | null>(null);
   const targetPathname = useRef<string | null>(null);
   const lockedRef = useRef(false);
+  const phaseRef = useRef<Phase>("idle");
+  const pathReadyRef = useRef(false);
+  const holdReadyRef = useRef(false);
 
   const clearTimers = () => {
     timers.current.forEach(clearTimeout);
@@ -59,24 +65,34 @@ export default function PageTransition() {
     timers.current.push(window.setTimeout(fn, ms));
   };
 
-  // Cuando el pathname cambia y coincide con el destino que estábamos
-  // esperando, arranca la revelación (con un mínimo de cobertura para que
-  // no se sienta como un parpadeo).
+  useEffect(() => {
+    phaseRef.current = phase;
+  }, [phase]);
+
+  // Revela solo cuando se cumplen las dos condiciones: la navegación ya
+  // aterrizó en el destino Y la cortina lleva cubierta al menos MIN_HOLD_MS
+  // (lo que tarde más). Así el título siempre alcanza a mostrarse, incluso
+  // en rutas precargadas que resuelven casi al instante.
+  const tryReveal = useCallback(() => {
+    if (phaseRef.current !== "held" || !pathReadyRef.current || !holdReadyRef.current) return;
+    targetPathname.current = null;
+    clearTimers();
+    setPhase("reveal");
+    schedule(() => {
+      setPhase("idle");
+      if (lockedRef.current) {
+        lockedRef.current = false;
+        unlockScroll();
+      }
+    }, REVEAL_MS);
+  }, []);
+
   useEffect(() => {
     if (phase === "held" && targetPathname.current === pathname) {
-      targetPathname.current = null;
-      clearTimers();
-      setPhase("reveal");
-      schedule(() => {
-        setPhase("idle");
-        if (lockedRef.current) {
-          lockedRef.current = false;
-          unlockScroll();
-        }
-      }, REVEAL_MS);
+      pathReadyRef.current = true;
+      tryReveal();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pathname]);
+  }, [pathname, phase, tryReveal]);
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -116,6 +132,8 @@ export default function PageTransition() {
 
       pendingHref.current = url.pathname + url.search + url.hash;
       targetPathname.current = url.pathname;
+      pathReadyRef.current = false;
+      holdReadyRef.current = false;
       setDestination(labelFor(url.pathname));
 
       lockScroll();
@@ -127,6 +145,12 @@ export default function PageTransition() {
         if (pendingHref.current) {
           router.push(pendingHref.current);
         }
+
+        schedule(() => {
+          holdReadyRef.current = true;
+          tryReveal();
+        }, MIN_HOLD_MS);
+
         // Resguardo: si el pathname nunca coincide (navegación bloqueada,
         // ruta externa reescrita, etc.), revela igual para no dejar la
         // cortina cubriendo la pantalla.
@@ -138,12 +162,12 @@ export default function PageTransition() {
             return current;
           });
         }, FALLBACK_MS);
-      }, COVER_MS + MIN_HOLD_MS);
+      }, COVER_MS);
     }
 
     document.addEventListener("click", onClick, true);
     return () => document.removeEventListener("click", onClick, true);
-  }, [phase, router]);
+  }, [phase, router, tryReveal]);
 
   useEffect(() => clearTimers, []);
 
