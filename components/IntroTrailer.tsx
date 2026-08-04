@@ -8,7 +8,7 @@ import styles from "./IntroTrailer.module.css";
 
 const SEEN_KEY = "gl-intro-seen";
 const CITY_IMAGE =
-  "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=1800&q=80";
+  "https://images.unsplash.com/photo-1641335469533-89ad14fd2ec5?auto=format&fit=crop&w=1800&q=80";
 
 type IntroTrailerProps = {
   /** Retrato profesional que protagoniza la primera diapositiva. */

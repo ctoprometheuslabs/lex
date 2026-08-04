@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import type { StaticImageData } from "next/image";
 import Link from "next/link";
-import ParallaxLayer from "./ParallaxLayer";
+import HeroSlideshow, { type HeroSlide } from "./HeroSlideshow";
 import IntroTrailer from "./IntroTrailer";
 import styles from "./Hero.module.css";
 
@@ -12,9 +12,7 @@ type HeroCta = {
 };
 
 type HeroProps = {
-  image: string;
-  imageAlt?: string;
-  speed?: number;
+  images: HeroSlide[];
   kicker: string;
   title: ReactNode;
   lead: string;
@@ -26,16 +24,14 @@ type HeroProps = {
 };
 
 /**
- * Hero de la portada: fotografía full-bleed con parallax sutil (oficina que
- * se abre a un horizonte urbano nocturno) y un scrim que va de azul marino
- * opaco a la izquierda —donde vive el mensaje— a transparente a la derecha,
- * dejando la imagen protagonista. Aloja al `IntroTrailer`, la secuencia
- * cinemática que precede a esta sección en la primera visita de la sesión.
+ * Hero de la portada: slideshow full-bleed en loop (`HeroSlideshow`) con un
+ * scrim que va de azul marino opaco a la izquierda —donde vive el mensaje—
+ * a transparente a la derecha, dejando la fotografía protagonista. Aloja al
+ * `IntroTrailer`, la secuencia cinemática que precede a esta sección en la
+ * primera visita de la sesión.
  */
 export default function Hero({
-  image,
-  imageAlt = "",
-  speed = 0.18,
+  images,
   kicker,
   title,
   lead,
@@ -48,14 +44,7 @@ export default function Hero({
     <section className={styles.hero}>
       {introPhoto ? <IntroTrailer photo={introPhoto} /> : null}
 
-      <ParallaxLayer
-        image={image}
-        imageAlt={imageAlt}
-        speed={speed}
-        className={styles.heroBg}
-        sizes="100vw"
-        priority
-      />
+      <HeroSlideshow slides={images} />
 
       <div className={styles.heroInner}>
         <p className={styles.kicker}>{kicker}</p>

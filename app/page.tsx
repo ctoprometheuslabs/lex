@@ -34,9 +34,24 @@ export default function Home() {
   return (
     <main>
       <Hero
-        image="https://images.unsplash.com/photo-1444723121867-7a241cacace9?auto=format&fit=crop&w=1800&q=80"
-        imageAlt="Distrito financiero al anochecer"
-        speed={0.18}
+        images={[
+          {
+            src: "https://images.unsplash.com/photo-1584200375886-3f24533fa875?auto=format&fit=crop&w=1800&q=80",
+            alt: "Capitolio de Estados Unidos iluminado de noche",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1703641852658-7f066b2f5e2b?auto=format&fit=crop&w=1800&q=80",
+            alt: "Washington Monument de noche",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1565970695389-c1d00f478e17?auto=format&fit=crop&w=1800&q=80",
+            alt: "Lincoln Memorial de noche, Washington D.C.",
+          },
+          {
+            src: "https://images.unsplash.com/photo-1569285647999-67fc5a1ff1ad?auto=format&fit=crop&w=1800&q=80",
+            alt: "Casa Blanca iluminada de noche",
+          },
+        ]}
         kicker="Grant Law · Abogado"
         title={
           <>
