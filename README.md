@@ -1,101 +1,148 @@
-# Sitio Web — Estudio Jurídico (Lex & Asociados)
+# Sitio Web — Grant Law (Abogado)
 
-Sitio web profesional para firma de servicios legales, con diseño premium inspirado en el estándar visual de las firmas *big law*: tipografía serif clásica, paleta institucional y experiencia de navegación cuidada.
+Sitio web profesional para **Grant Law**, abogado individual, con diseño premium
+inspirado en el estándar visual *big law*: tipografía serif clásica, paleta
+institucional azul marino/dorado, y una apertura cinemática (splash + intro trailer +
+transiciones entre páginas) pensada para causar una primera impresión memorable.
 
-> **Estado:** Borrador funcional aprobado por el cliente · Nombre "Lex & Asociados" es placeholder hasta definir la marca final.
+> **Estado:** en desarrollo activo sobre Next.js. El formulario de contacto todavía
+> no tiene backend (ver Roadmap inmediato).
 
 ## Vista general
 
 | | |
 |---|---|
-| **Cliente** | Firma de servicios legales (nombre por definir) |
+| **Cliente** | Grant Law — abogado individual |
 | **Tipo** | Sitio corporativo multi-página, orientado a captación de clientes |
-| **Stack** | HTML5 + CSS3 + JavaScript vanilla (sin frameworks ni build step) |
-| **Hosting** | Vercel (deploy estático) con dominio personalizado del cliente |
-| **Plazo** | 1–2 días hábiles desde anticipo |
+| **Stack** | Next.js (App Router) + TypeScript + CSS Modules |
+| **Hosting** | Vercel, deploy por rama (`git push` → preview automático) |
+| **Correo** | SMTP de Gmail vía `nodemailer` (pendiente de implementar) |
 
 ## Estructura del proyecto
 
 ```
-.
-├── index.html              # Sitio completo (router por hash: 5 páginas)
-├── README.md
-└── .claude/
-    └── agents/
-        └── frontend.md     # Agente frontend para Claude Code
-```
+app/
+├── layout.tsx                 # Fuentes, SplashScreen, PageTransition, Topbar, Footer
+├── page.tsx                   # /                (Home)
+├── about/page.tsx             # /about
+├── practice-areas/page.tsx    # /practice-areas
+├── experience/page.tsx        # /experience
+├── contact/page.tsx           # /contact
+├── globals.css                # Tokens de color y utilidades base
+└── api/contact/route.ts       # (pendiente) POST — envío de correos
 
-El borrador actual vive en **un solo archivo** (`index.html`) con un router por hash (`#/inicio`, `#/firma`, `#/areas`, `#/equipo`, `#/contacto`). Para producción se puede mantener así o separar en páginas HTML independientes (mejor SEO — ver Roadmap).
+components/                    # Topbar, Footer, Hero, ParallaxBanner, AccessCards,
+                                # PracticeIndex, Values, StatsBar, Quotes, ContactForm...
+components/SplashScreen.tsx    # Pantalla de carga de la primera visita
+components/IntroTrailer.tsx    # Secuencia cinemática dentro del Hero de Home
+components/PageTransition.tsx  # Cortina de transición entre páginas (toda navegación interna)
+components/Monogram.tsx        # Monograma circular "G|L" reutilizado por los overlays
+components/scrollLock.ts       # Bloqueo de scroll compartido por los tres overlays
+
+lib/mailer.ts                  # (pendiente) transporte nodemailer
+public/                        # Imágenes (photo.jpeg real + placeholders Unsplash)
+```
 
 ### Páginas
 
-1. **Inicio** — Hero con parallax, cifras, tarjetas de áreas, banner de promesa, preview del equipo, testimonios, CTA final.
-2. **La Firma** — Historia, principios (3 valores), banner CTA.
-3. **Áreas de Práctica** — Índice estilo expediente legal (numerales romanos I–V).
-4. **Equipo** — Perfil destacado del socio fundador + grilla de 4 integrantes.
-5. **Contacto** — Formulario de consulta + datos de la firma.
+1. **Home** — Hero full-bleed con `IntroTrailer` (retrato + skyline nocturno,
+   textos superpuestos, "Skip intro"), tarjetas de acceso a las demás páginas.
+2. **About** — Perfil en primera persona (es un abogado individual, no un equipo),
+   principios, credenciales.
+3. **Practice Areas** — Índice estilo expediente legal (numerales romanos I–V).
+4. **Experience** — Cifras, asuntos representativos, testimonios.
+5. **Contact** — Formulario de consulta (visual únicamente por ahora) + datos de contacto.
+
+Rutas antiguas en español (`/firma`, `/areas`, `/equipo`, `/contacto`) redirigen a
+las actuales vía `next.config.ts`, por si quedan enlaces sueltos.
+
+## La experiencia de apertura y navegación
+
+Tres piezas cinemáticas trabajan juntas, cada una con un propósito distinto:
+
+- **Splash de primera carga** — fondo navy con el monograma centrado; solo aparece
+  al cargar el sitio por primera vez (o al recargar), nunca en navegación interna.
+- **Intro Trailer** — dentro del Hero de Home, solo la primera vez por sesión:
+  diapositivas con crossfade (retrato profesional → skyline nocturno), textos
+  superpuestos y botón "Skip intro".
+- **Cortina de transición** — al navegar entre páginas (About, Practice Areas...),
+  una cortina navy sube desde abajo, muestra el nombre de la página de destino y
+  continúa el barrido hacia arriba para revelar la nueva página. Es una pieza
+  visualmente distinta al splash (no repite el logo grande).
+
+Los tres respetan `prefers-reduced-motion: reduce` y comparten un bloqueo de scroll
+con contador (`components/scrollLock.ts`) que compensa el ancho de la scrollbar para
+no generar saltos de layout.
 
 ## Sistema de diseño
 
-**Paleta** (derivada del concepto "rosewood" / palo de rosa):
+**Paleta** (`app/globals.css`):
 
 | Token | Hex | Uso |
 |---|---|---|
-| `--rosewood` | `#3F2229` | Color principal, botones, bandas |
-| `--rosewood-deep` | `#2C171D` | Fondos oscuros, header, footer |
-| `--brass` | `#A9854B` | Acento dorado, eyebrows, CTA |
-| `--brass-soft` | `#C3A671` | Acento dorado sobre fondo oscuro |
-| `--ivory` | `#F5F2EB` | Fondos alternos, texto sobre oscuro |
-| `--paper` | `#FBFAF6` | Fondo base |
-| `--ink` | `#211C1A` | Texto principal |
-| `--stone` | `#7C746C` | Texto secundario |
+| `--navy` | `#16294B` | Color principal, botones, bandas |
+| `--navy-deep` | `#0D1B36` | Fondos oscuros, header, footer |
+| `--navy-ink` | `#0A1830` | Overlays (splash/cortina), más oscuro que navy-deep |
+| `--gold` | `#B9924F` | Acento dorado, eyebrows, CTA |
+| `--gold-soft` | `#CBA96A` | Acento dorado sobre fondo oscuro |
+| `--gold-deep` | `#8F6E37` | Hover/estados sobre acento dorado |
+| `--champagne` | `#D8C08A` | Acento secundario dentro de los overlays |
+| `--ivory` | `#F1EFE9` | Fondos alternos, texto sobre oscuro |
+| `--paper` | `#FAF9F5` | Fondo base |
+| `--ink` | `#1A1F2B` | Texto principal |
+| `--stone` | `#6E7482` | Texto secundario |
 
 **Tipografía:**
-- Display/títulos: `Libre Caslon Text` (serif clásica de documentos legales)
+- Display/títulos: `Libre Caslon Text` (serif clásica, peso 400)
 - Cuerpo/UI: `Libre Franklin`
-- Eyebrows: Franklin 11px, uppercase, letter-spacing `.32em`
+- Eyebrows: 11px, uppercase, letter-spacing `.32em`
 
-**Firma visual:** marcos de doble filete estilo membrete grabado, monograma circular, numerales romanos en índices, parallax sutil en hero y banners.
+**Firma visual:** marcos de doble filete, monograma circular, numerales romanos en
+índices, parallax sutil en Hero y banners, `border-radius: 0` siempre.
 
 ## Desarrollo local
 
-No requiere instalación. Opciones:
-
 ```bash
-# Abrir directamente
-open index.html
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # debe pasar sin errores antes de cualquier entrega
+npm run lint
+```
 
-# O servir localmente (recomendado para probar rutas)
-npx serve .
-# → http://localhost:3000
+## Correo (formulario de contacto)
+
+**Aún no implementado.** El contrato (variables de entorno, validación, plantillas)
+está definido en `.claude/agents/backend.md` y `CLAUDE.md`. Variables previstas:
+
+```
+SMTP_USER=            # Gmail remitente (demo: cto@prometheuslabs.com.co)
+SMTP_APP_PASSWORD=    # App Password de Google — nunca en el repo
+CONTACT_TO=           # receptor de las consultas
 ```
 
 ## Deploy en Vercel
 
 ```bash
-npm i -g vercel
-vercel          # primer deploy (preview)
+vercel          # deploy preview (por rama)
 vercel --prod   # producción
 ```
 
-Luego, en el dashboard de Vercel: **Settings → Domains** → agregar el dominio del cliente y configurar los DNS según las instrucciones (registro `A` / `CNAME`). El certificado HTTPS se emite automáticamente.
+Las variables de entorno de producción se cargan en el dashboard de Vercel
+(**Settings → Environment Variables**), nunca en el repo.
 
 ## Checklist de personalización (antes de entregar)
 
-- [ ] Reemplazar nombre "Lex & Asociados" por la marca final (buscar y reemplazar en `index.html`)
-- [ ] Reemplazar fotos placeholder de Unsplash por fotos reales del equipo
-- [ ] Nombres, cargos y bios reales del equipo
+- [ ] Implementar backend del formulario de contacto (`app/api/contact/route.ts` + `lib/mailer.ts`)
+- [ ] Reemplazar fotos placeholder de Unsplash por fotografía real donde falte
 - [ ] Datos de contacto reales (teléfono, correo, dirección, horario)
-- [ ] Cifras reales del hero (años, casos, abogados)
-- [ ] Conectar formulario de contacto (Formspree, Resend o API route de Vercel)
-- [ ] Ajustar áreas de práctica según especialidad real del abogado
+- [ ] Cifras reales en `/experience` (años, casos, áreas)
+- [ ] `CONTACT_TO` y cuenta SMTP rotadas al Gmail del cliente
 - [ ] `<title>`, meta description y Open Graph con la marca final
 - [ ] Favicon con el monograma de la firma
 - [ ] Testimonios reales (con autorización del cliente) o remover sección
 
 ## Roadmap (mejoras cotizables aparte)
 
-- Separar en páginas HTML independientes o migrar a Astro/Next.js (SEO por página)
 - Blog / publicaciones legales
 - Agendamiento en línea (Calendly o similar)
 - Versión en inglés
@@ -104,11 +151,15 @@ Luego, en el dashboard de Vercel: **Settings → Domains** → agregar el domini
 
 ## Convenciones
 
-- **Sin dependencias:** todo en vanilla; fuentes vía Google Fonts.
-- **CSS:** variables en `:root`, mobile-first en media queries (breakpoints 1020/960/820px).
-- **Accesibilidad:** respetar `prefers-reduced-motion` (parallax y reveals se desactivan), focus visible, `alt` en imágenes.
-- **Idioma:** copy en español formal (trato de "usted"), tono sobrio — nunca coloquial ni "startup".
+- **TypeScript estricto**; sin `any` sin justificar.
+- **Dependencias mínimas:** `nodemailer` es la única aprobada además de Next.js.
+- **CSS Modules** por componente; tokens de color solo vía variables en `:root`.
+- **Ediciones quirúrgicas:** leer antes de editar, no regenerar archivos completos.
+- **Accesibilidad:** respetar `prefers-reduced-motion` (parallax, reveals y los tres
+  overlays cinemáticos se desactivan/acortan), focus visible, `alt` en imágenes.
+- **Idioma:** copy en español formal (trato de "usted"), en singular — es un abogado
+  individual, no un equipo. Menú y rutas en inglés.
 
 ---
 
-**Desarrollado por:** Andrés Felipe Arboleda · Prometheus Labs · cto@prometheuslabs.com.co
+**Desarrollado por:** Prometheus Labs · cto@prometheuslabs.com.co
