@@ -8,14 +8,6 @@
   padding: 150px 20px 90px;
 }
 
-.heroBg {
-  position: absolute;
-  inset: -12% 0;
-  z-index: 0;
-  background: var(--navy-ink);
-  will-change: transform;
-}
-
 /* Scrim: azul marino opaco a la izquierda (donde vive el texto) que se
    disuelve hacia la derecha para dejar la fotografía protagonista, más un
    velo inferior para que la leyenda siga siendo legible sobre la imagen. */
